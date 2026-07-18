@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎯 Câu đố · Bạn là gì của Admin?</title>
+    <title>🎯 Câu đố · Bị lừa rồi!</title>
     <style>
         * {
             margin: 0;
@@ -20,12 +20,15 @@
             font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
             padding: 1.5rem;
             margin: 0;
+            overflow-x: hidden;
+            position: relative;
         }
 
+        /* Nền chính */
         .container {
             max-width: 780px;
             width: 100%;
-            background: rgba(235, 225, 210, 0.9);
+            background: rgba(235, 225, 210, 0.92);
             backdrop-filter: blur(8px);
             border-radius: 3.5rem 3.5rem 2.5rem 2.5rem;
             padding: 2.5rem 2rem 2.8rem;
@@ -33,6 +36,8 @@
             border: 2px solid #dac9ae;
             transition: 0.2s;
             text-align: center;
+            position: relative;
+            z-index: 10;
         }
 
         h1 {
@@ -56,7 +61,6 @@
             border: 2px solid #b08858;
         }
 
-        /* Quiz */
         .quiz-box {
             background: #eee3d1;
             border-radius: 60px 60px 40px 40px;
@@ -130,7 +134,6 @@
             opacity: 0.7;
         }
 
-        /* kết quả */
         .result-area {
             margin: 1.8rem 0 0.8rem;
             padding: 1.2rem;
@@ -165,7 +168,7 @@
             border: 6px solid #9e7b53;
             box-shadow: 0 10px 14px rgba(0,0,0,0.3);
             background: #f0e0c7;
-            display: none; /* ẩn mặc định */
+            display: none;
         }
 
         .result-image.show {
@@ -207,6 +210,73 @@
             display: inline-block;
         }
 
+        /* ===== CHỮ BAY "BỊ LỪA RỒI" ===== */
+        .flying-text {
+            position: fixed;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #e03a1f;
+            text-shadow: 0 0 15px #ff6a4a, 0 0 30px #ff2200, 3px 3px 0 #4d1a0e;
+            pointer-events: none;
+            z-index: 9999;
+            animation: flyAround 4s linear forwards;
+            white-space: nowrap;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            letter-spacing: 2px;
+            transform: rotate(-5deg);
+        }
+
+        /* Ảnh bay kèm */
+        .flying-image {
+            position: fixed;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 30px;
+            border: 5px solid #ffcc77;
+            box-shadow: 0 0 35px rgba(255, 100, 0, 0.9);
+            pointer-events: none;
+            z-index: 9998;
+            animation: flyAround 4.5s linear forwards;
+        }
+
+        @keyframes flyAround {
+            0% {
+                opacity: 0;
+                transform: translate(0, 0) scale(0.3) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+                transform: translate(30px, -60px) scale(1.1) rotate(8deg);
+            }
+            25% {
+                transform: translate(-120px, 40px) scale(1) rotate(-12deg);
+            }
+            50% {
+                transform: translate(180px, -100px) scale(1.2) rotate(15deg);
+            }
+            75% {
+                transform: translate(-200px, 80px) scale(0.9) rotate(-20deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(250px, -150px) scale(1.3) rotate(25deg);
+            }
+        }
+
+        /* Lớp phủ mờ khi thắng */
+        .overlay-win {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 9997;
+            pointer-events: none;
+            backdrop-filter: blur(3px);
+        }
+
         @media (max-width: 550px) {
             .container { padding: 1.5rem 1rem; }
             h1 { font-size: 2.2rem; }
@@ -214,11 +284,13 @@
             .question { font-size: 1.4rem; }
             .result-text { font-size: 1.7rem; }
             .result-image { width: 140px; height: 140px; }
+            .flying-text { font-size: 2.5rem; }
+            .flying-image { width: 80px; height: 80px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="mainContainer">
         <h1>🧩 ĐỐ VUI</h1>
         <div class="subhead">⚡ 5 câu hỏi hại não ⚡</div>
 
@@ -233,8 +305,9 @@
 
             <button class="reset-btn" id="resetBtn">🔄 CHƠI LẠI</button>
         </div>
-        <div class="footnote">💡 Trả lời đúng cả 5 câu để biết "bạn là gì của admin"</div>
+        <div class="footnote">💡 Trả lời đúng cả 5 câu để biết điều gì sẽ xảy ra!</div>
     </div>
+
     <script>
         (function() {
             // ----- 5 câu đố khó (vui) -----
@@ -242,54 +315,182 @@
                 {
                     question: "Cái gì càng đốt càng dài?",
                     options: ["Nến", "Tóc", "Que diêm", "Ruột bánh mì"],
-                    correct: 0 // Nến
+                    correct: 0
                 },
                 {
                     question: "Con gì đầu dê, mình ốc?",
                     options: ["Dê ốc", "Ốc sên", "Dốc (dốc núi)", "Khỉ dê"],
-                    correct: 2 // Dốc (chữ chơi)
+                    correct: 2
                 },
                 {
                     question: "Bệnh gì bác sĩ phải bó tay?",
                     options: ["Gãy tay", "Bó tay (bó bột)", "Bệnh vô danh", "Bệnh sĩ"],
-                    correct: 1 // bó tay
+                    correct: 1
                 },
                 {
                     question: "Lịch nào dài nhất?",
                     options: ["Lịch sử", "Lịch âm", "Lịch Tây", "Lịch thi đấu"],
-                    correct: 0 // Lịch sử
+                    correct: 0
                 },
                 {
                     question: "Con gì có cánh mà không bay?",
                     options: ["Chim cánh cụt", "Gà", "Vịt", "Công"],
-                    correct: 0 // Chim cánh cụt
+                    correct: 0
                 }
             ];
 
-            // Ảnh từ link (sẽ thay bằng ảnh của bạn)
             const IMAGE_URL = "https://tse3.mm.bing.net/th/id/OIP.1XswuztcQnHn8lwz31z1MAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3";
 
-            // Các kết quả tương ứng (theo thứ tự: bạn bè, không biết, bố của admin)
+            // Kết quả cho các trường hợp không thắng
             const RESULT_MESSAGES = [
                 "👥 Bạn bè",
                 "❓ Không biết",
                 "👨‍👦 Bố của admin"
             ];
 
-            // Trạng thái
             let currentQuestionIndex = 0;
             let correctCount = 0;
             let isQuizFinished = false;
             let optionButtons = [];
+            let isWin = false;
 
-            // DOM elements
             const questionDisplay = document.getElementById('questionDisplay');
             const optionsContainer = document.getElementById('optionsContainer');
             const resultText = document.getElementById('resultText');
             const resultImage = document.getElementById('resultImage');
             const resetBtn = document.getElementById('resetBtn');
+            const mainContainer = document.getElementById('mainContainer');
 
-            // Hàm hiển thị câu hỏi
+            // Hàm tạo chữ bay + ảnh bay
+            function createFlyingElements() {
+                // Xóa các phần tử bay cũ nếu có
+                document.querySelectorAll('.flying-text, .flying-image, .overlay-win').forEach(el => el.remove());
+
+                // Tạo lớp phủ mờ
+                const overlay = document.createElement('div');
+                overlay.className = 'overlay-win';
+                document.body.appendChild(overlay);
+
+                const textPhrases = [
+                    "BỊ LỪA RỒI!", "BỊ LỪA RỒI!", "HAHAHA!",
+                    "BỊ LỪA RỒI!", "ÔI TRỜI!", "BỊ LỪA RỒI!"
+                ];
+
+                // Tạo 20 chữ bay
+                for (let i = 0; i < 20; i++) {
+                    const el = document.createElement('div');
+                    el.className = 'flying-text';
+                    el.textContent = textPhrases[Math.floor(Math.random() * textPhrases.length)];
+                    // Vị trí ngẫu nhiên
+                    el.style.left = Math.random() * 85 + 5 + '%';
+                    el.style.top = Math.random() * 85 + 5 + '%';
+                    el.style.fontSize = (Math.random() * 2.5 + 2.2) + 'rem';
+                    el.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                    el.style.animationDelay = (Math.random() * 1.2) + 's';
+                    el.style.transform = `rotate(${Math.random() * 60 - 30}deg)`;
+                    el.style.color = ['#ff3d1a', '#ff6a2a', '#ff2200', '#ff8844', '#ff5555'][Math.floor(Math.random() * 5)];
+                    document.body.appendChild(el);
+                }
+
+                // Tạo 12 ảnh bay
+                for (let i = 0; i < 12; i++) {
+                    const img = document.createElement('img');
+                    img.className = 'flying-image';
+                    img.src = IMAGE_URL;
+                    img.alt = 'ảnh lừa';
+                    img.style.left = Math.random() * 80 + 10 + '%';
+                    img.style.top = Math.random() * 80 + 10 + '%';
+                    img.style.width = (Math.random() * 80 + 70) + 'px';
+                    img.style.height = img.style.width;
+                    img.style.animationDuration = (Math.random() * 3.5 + 3) + 's';
+                    img.style.animationDelay = (Math.random() * 1.5) + 's';
+                    img.style.borderRadius = (Math.random() * 40 + 10) + 'px';
+                    img.style.borderColor = ['#ffcc77', '#ff8844', '#ffaa55', '#ffdd88'][Math.floor(Math.random() * 4)];
+                    document.body.appendChild(img);
+                }
+
+                // Tự động xóa sau 7 giây
+                setTimeout(() => {
+                    document.querySelectorAll('.flying-text, .flying-image, .overlay-win').forEach(el => el.remove());
+                }, 7000);
+            }
+
+            // Kết thúc quiz
+            function finishQuiz() {
+                isQuizFinished = true;
+                questionDisplay.textContent = "🎉 HOÀN THÀNH!";
+                optionsContainer.innerHTML = '';
+
+                let resultMessage = '';
+                const imageToShow = IMAGE_URL;
+
+                // Kiểm tra thắng (đúng cả 5 câu)
+                if (correctCount === 5) {
+                    isWin = true;
+                    // KHÔNG hiển thị "bạn là gì của admin" nữa
+                    resultText.textContent = "🤯 BỊ LỪA RỒI!";
+                    resultImage.src = imageToShow;
+                    resultImage.classList.add('show');
+
+                    // KÍCH HOẠT CHỮ BAY + ẢNH BAY
+                    setTimeout(() => {
+                        createFlyingElements();
+                    }, 300);
+
+                    // Ẩn ảnh trong result sau 1.5s (vì đã có ảnh bay)
+                    setTimeout(() => {
+                        resultImage.classList.remove('show');
+                    }, 1500);
+
+                } else {
+                    isWin = false;
+                    // Hiển thị kết quả bình thường
+                    if (correctCount >= 3 && correctCount <= 4) {
+                        resultMessage = RESULT_MESSAGES[0]; // Bạn bè
+                    } else {
+                        resultMessage = RESULT_MESSAGES[1]; // Không biết
+                    }
+                    resultText.textContent = `✅ Bạn là: ${resultMessage}`;
+                    resultImage.src = imageToShow;
+                    resultImage.classList.add('show');
+                }
+            }
+
+            // Xử lý chọn đáp án
+            function handleOptionClick(selectedIndex, questionIndex) {
+                if (isQuizFinished) return;
+                const q = questions[questionIndex];
+                const isCorrect = (selectedIndex === q.correct);
+                const buttons = optionButtons;
+
+                buttons.forEach(btn => {
+                    btn.classList.add('disabled');
+                    btn.style.pointerEvents = 'none';
+                });
+
+                buttons.forEach((btn, idx) => {
+                    if (idx === q.correct) {
+                        btn.classList.add('correct');
+                    } else if (idx === selectedIndex && !isCorrect) {
+                        btn.classList.add('wrong');
+                    }
+                });
+
+                if (isCorrect) {
+                    correctCount++;
+                }
+
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < questions.length) {
+                        renderQuestion(currentQuestionIndex);
+                    } else {
+                        finishQuiz();
+                    }
+                }, 700);
+            }
+
+            // Hiển thị câu hỏi
             function renderQuestion(index) {
                 if (index >= questions.length) {
                     finishQuiz();
@@ -311,96 +512,28 @@
                     optionButtons.push(btn);
                 });
 
-                // reset trạng thái result tạm thời
                 resultText.textContent = `🤔 Đang suy nghĩ...`;
                 resultImage.classList.remove('show');
                 resultImage.src = '';
                 isQuizFinished = false;
+                isWin = false;
             }
 
-            // Xử lý chọn đáp án
-            function handleOptionClick(selectedIndex, questionIndex) {
-                if (isQuizFinished) return;
-                const q = questions[questionIndex];
-                const isCorrect = (selectedIndex === q.correct);
-                const buttons = optionButtons;
-
-                // Disable tất cả nút
-                buttons.forEach(btn => {
-                    btn.classList.add('disabled');
-                    btn.style.pointerEvents = 'none';
-                });
-
-                // Tô màu đúng/sai
-                buttons.forEach((btn, idx) => {
-                    if (idx === q.correct) {
-                        btn.classList.add('correct');
-                    } else if (idx === selectedIndex && !isCorrect) {
-                        btn.classList.add('wrong');
-                    }
-                });
-
-                // Cập nhật số câu đúng
-                if (isCorrect) {
-                    correctCount++;
-                }
-
-                // Sau 0.6s chuyển câu tiếp theo hoặc kết thúc
-                setTimeout(() => {
-                    // di chuyển đến câu tiếp theo
-                    currentQuestionIndex++;
-                    if (currentQuestionIndex < questions.length) {
-                        renderQuestion(currentQuestionIndex);
-                    } else {
-                        finishQuiz();
-                    }
-                }, 700);
-            }
-
-            // Kết thúc quiz: hiện kết quả và ảnh
-            function finishQuiz() {
-                isQuizFinished = true;
-                questionDisplay.textContent = "🎉 HOÀN THÀNH!";
-
-                // Xóa các nút (ẩn đi)
-                optionsContainer.innerHTML = '';
-
-                // Xác định kết quả (dựa trên số câu đúng)
-                let resultMessage = '';
-                let imageToShow = IMAGE_URL;
-
-                if (correctCount === 5) {
-                    resultMessage = RESULT_MESSAGES[2]; // "Bố của admin"
-                } else if (correctCount >= 3 && correctCount <= 4) {
-                    resultMessage = RESULT_MESSAGES[0]; // "Bạn bè"
-                } else {
-                    resultMessage = RESULT_MESSAGES[1]; // "Không biết"
-                }
-
-                // Hiển thị kết quả
-                resultText.textContent = `✅ Bạn là: ${resultMessage}`;
-                resultImage.src = imageToShow;
-                resultImage.alt = "Ảnh bí ẩn";
-                resultImage.classList.add('show');
-
-                // (Tùy chỉnh thêm nếu muốn)
-            }
-
-            // Reset toàn bộ
+            // Reset
             function resetQuiz() {
+                // Xóa các phần tử bay còn sót
+                document.querySelectorAll('.flying-text, .flying-image, .overlay-win').forEach(el => el.remove());
                 currentQuestionIndex = 0;
                 correctCount = 0;
                 isQuizFinished = false;
+                isWin = false;
                 resultImage.classList.remove('show');
                 resultImage.src = '';
                 resultText.textContent = '🤔 Chọn đáp án...';
                 renderQuestion(0);
             }
 
-            // Gán sự kiện reset
             resetBtn.addEventListener('click', resetQuiz);
-
-            // Khởi tạo
             resetQuiz();
         })();
     </script>
