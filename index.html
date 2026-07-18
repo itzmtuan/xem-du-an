@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎯 Thử thách hành động · :))!</title>
+    <title>🎯 Thử thách ức chế · Bị lừa rồi!</title>
     <style>
         * {
             margin: 0;
@@ -46,7 +46,6 @@
             text-shadow: 0 3px 0 #b6986d;
             margin-bottom: 0.25rem;
         }
-
         .subhead {
             font-size: 1.1rem;
             font-weight: 600;
@@ -65,7 +64,7 @@
             padding: 2rem 1.5rem 1.8rem;
             box-shadow: inset 0 -6px 0 #af906e, 0 12px 18px rgba(0,0,0,0.2);
             border: 2px solid #c9b086;
-            min-height: 400px;
+            min-height: 420px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -79,20 +78,19 @@
             background: #fbf3e3;
             border-radius: 80px;
             display: inline-block;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             border: 2px solid #bb9b73;
             box-shadow: inset 0 -3px 0 #9b7d5a;
             width: 100%;
         }
 
-        /* Khu vực hành động */
         .action-area {
             width: 100%;
-            min-height: 220px;
+            min-height: 240px;
             background: #dccdb6;
             border-radius: 40px;
             padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             border: 4px dashed #9b7d5a;
             position: relative;
             overflow: hidden;
@@ -100,10 +98,9 @@
             touch-action: none;
         }
 
-        /* Vật thể di chuyển */
         .drag-object {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background: radial-gradient(circle at 30% 30%, #ff8844, #cc4400);
             border-radius: 50%;
             position: absolute;
@@ -120,14 +117,12 @@
             touch-action: none;
             z-index: 5;
         }
-
         .drag-object:active {
             cursor: grabbing;
-            box-shadow: 0 4px 0 #7a3300, 0 8px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 0 #7a3300;
             transform: translateY(4px);
         }
 
-        /* Mục tiêu cần chạm */
         .target-zone {
             position: absolute;
             width: 100px;
@@ -145,14 +140,12 @@
             pointer-events: none;
             box-shadow: inset 0 0 20px rgba(45, 122, 45, 0.2);
         }
-
         .target-zone.success {
             background: rgba(45, 122, 45, 0.4);
             border-color: #00cc00;
             box-shadow: 0 0 30px #00cc00;
         }
 
-        /* Tường (chướng ngại) */
         .wall {
             position: absolute;
             background: #6b4f3a;
@@ -162,54 +155,46 @@
             pointer-events: none;
         }
 
-        /* Nút trong action */
         .action-btn {
             background: #3b6f3b;
             border: none;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            padding: 0.8rem 2.5rem;
+            padding: 0.6rem 2rem;
             border-radius: 60px;
             cursor: pointer;
-            box-shadow: 0 6px 0 #1f4a1f, 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 0 #1f4a1f;
             transition: 0.05s linear;
-            margin: 0.5rem;
+            margin: 0.3rem;
+            pointer-events: auto;
         }
-
         .action-btn:active {
             transform: translateY(6px);
             box-shadow: 0 2px 0 #1f4a1f;
         }
-
         .action-btn:disabled {
-            opacity: 0.6;
+            opacity: 0.5;
             transform: translateY(4px);
             box-shadow: 0 2px 0 #1f4a1f;
             pointer-events: none;
         }
 
-        .action-btn.success {
-            background: #2d8f2d;
-            box-shadow: 0 0 20px #44ff44;
-        }
-
         .result-area {
-            margin: 1rem 0 0.5rem;
-            padding: 1rem;
+            margin: 0.5rem 0 0.5rem;
+            padding: 0.8rem;
             border-radius: 80px;
             background: #dac09a;
             border: 3px solid #b58b5e;
-            min-height: 80px;
+            min-height: 70px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             width: 100%;
         }
-
         .result-text {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: #1d150b;
             background: #f7e8d2;
@@ -220,7 +205,7 @@
         }
 
         .reset-btn {
-            margin-top: 1.5rem;
+            margin-top: 1.2rem;
             background: #3b2e1d;
             border: none;
             color: #efe2cc;
@@ -229,18 +214,17 @@
             padding: 0.7rem 2.8rem;
             border-radius: 60px;
             cursor: pointer;
-            box-shadow: 0 8px 0 #1a130b, 0 4px 12px black;
+            box-shadow: 0 8px 0 #1a130b;
             transition: 0.06s linear;
             border: 2px solid #bea076;
         }
-
         .reset-btn:active {
             transform: translateY(6px);
             box-shadow: 0 2px 0 #1a130b;
         }
 
         .footnote {
-            margin-top: 1.5rem;
+            margin-top: 1.2rem;
             font-size: 0.9rem;
             color: #4b3924;
             background: #dac29e;
@@ -258,7 +242,7 @@
             text-shadow: 0 0 15px #ff6a4a, 0 0 30px #ff2200, 3px 3px 0 #4d1a0e;
             pointer-events: none;
             z-index: 9999;
-            animation: flyAround 4s linear forwards;
+            animation: flyAround 4.5s linear forwards;
             white-space: nowrap;
             letter-spacing: 2px;
         }
@@ -273,7 +257,7 @@
             box-shadow: 0 0 35px rgba(255, 100, 0, 0.9);
             pointer-events: none;
             z-index: 9998;
-            animation: flyAround 4.5s linear forwards;
+            animation: flyAround 5s linear forwards;
         }
 
         .overlay-win {
@@ -282,379 +266,119 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 9997;
             pointer-events: none;
-            backdrop-filter: blur(3px);
+            backdrop-filter: blur(4px);
         }
 
         @keyframes flyAround {
-            0% { opacity: 0; transform: translate(0, 0) scale(0.3) rotate(0deg); }
-            10% { opacity: 1; transform: translate(30px, -60px) scale(1.1) rotate(8deg); }
-            25% { transform: translate(-120px, 40px) scale(1) rotate(-12deg); }
-            50% { transform: translate(180px, -100px) scale(1.2) rotate(15deg); }
-            75% { transform: translate(-200px, 80px) scale(0.9) rotate(-20deg); }
-            100% { opacity: 0; transform: translate(250px, -150px) scale(1.3) rotate(25deg); }
+            0% { opacity: 0; transform: translate(0, 0) scale(0.2) rotate(0deg); }
+            10% { opacity: 1; transform: translate(40px, -80px) scale(1.2) rotate(10deg); }
+            25% { transform: translate(-150px, 50px) scale(1) rotate(-15deg); }
+            50% { transform: translate(200px, -120px) scale(1.3) rotate(18deg); }
+            75% { transform: translate(-250px, 100px) scale(0.9) rotate(-25deg); }
+            100% { opacity: 0; transform: translate(300px, -180px) scale(1.4) rotate(30deg); }
         }
 
-        @media (max-width: 550px) {
+        /* Thông báo "tốn 5 phút" */
+        .wasted-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: #ffdd44;
+            font-size: 2.8rem;
+            font-weight: 900;
+            padding: 1.5rem 3rem;
+            border-radius: 80px;
+            border: 4px solid #ffcc00;
+            box-shadow: 0 0 60px rgba(255, 200, 0, 0.5);
+            z-index: 10000;
+            text-align: center;
+            animation: pulseGlow 1.5s ease-in-out infinite alternate;
+            pointer-events: none;
+            white-space: nowrap;
+            letter-spacing: 2px;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 30px rgba(255, 200, 0, 0.3); transform: translate(-50%, -50%) scale(1); }
+            100% { box-shadow: 0 0 80px rgba(255, 200, 0, 0.8); transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        @media (max-width: 600px) {
             .container { padding: 1.5rem 1rem; }
             h1 { font-size: 2.2rem; }
-            .question { font-size: 1.3rem; }
+            .question { font-size: 1.2rem; }
             .drag-object { width: 50px; height: 50px; font-size: 1.5rem; }
             .target-zone { width: 70px; height: 70px; font-size: 0.8rem; }
-            .flying-text { font-size: 2.5rem; }
-            .flying-image { width: 80px; height: 80px; }
+            .flying-text { font-size: 2.2rem; }
+            .flying-image { width: 70px; height: 70px; }
+            .wasted-message { font-size: 1.8rem; padding: 1rem 1.5rem; white-space: normal; }
         }
     </style>
 </head>
 <body>
     <div class="container" id="mainContainer">
-        <h1>🎯 THỬ THÁCH</h1>
-        <div class="subhead">⚡ 5 hành động có mẹo ⚡</div>
+        <h1>😈 THỬ THÁCH ỨC CHẾ</h1>
+        <div class="subhead">⚡ 5 cấp độ điên đầu ⚡</div>
 
         <div class="quiz-box" id="quizBox">
             <div class="question" id="questionDisplay">Sẵn sàng?</div>
-            <div class="action-area" id="actionArea">
-                <!-- Nội dung động sẽ được render ở đây -->
-            </div>
+            <div class="action-area" id="actionArea"></div>
             <div class="result-area" id="resultArea">
-                <div class="result-text" id="resultText">🤔 Hãy làm theo hướng dẫn...</div>
+                <div class="result-text" id="resultText">🤔 Làm theo hướng dẫn...</div>
             </div>
             <button class="reset-btn" id="resetBtn">🔄 CHƠI LẠI</button>
         </div>
-        <div class="footnote">💡 Vượt qua 5 thử thách để xem điều gì xảy ra!</div>
+        <div class="footnote">💡 Hoàn thành 5 thử thách để nhận "phần thưởng"</div>
     </div>
 
     <script>
         (function() {
             const IMAGE_URL = "https://tse3.mm.bing.net/th/id/OIP.1XswuztcQnHn8lwz31z1MAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3";
 
-            // ========== ĐỊNH NGHĨA 5 THỬ THÁCH HÀNH ĐỘNG ==========
+            // ========== 5 THỬ THÁCH ỨC CHẾ ==========
             const challenges = [
+                // 1. Kéo vật, nhưng đích di chuyển
                 {
-                    title: "Rê chuột đến đích",
-                    description: "Kéo quả bóng màu cam vào ô vuông xanh",
+                    title: "Đích di động",
+                    description: "Kéo vật vào đích… nhưng nó chạy mất!",
                     render: function(container, onComplete) {
                         container.innerHTML = '';
-                        // Tạo vật kéo
+                        let targetX = 70, targetY = 70;
+                        let moveInterval;
+
                         const drag = document.createElement('div');
                         drag.className = 'drag-object';
-                        drag.textContent = '●';
-                        drag.style.left = '20px';
-                        drag.style.top = '60px';
-                        drag.style.width = '60px';
-                        drag.style.height = '60px';
-                        container.appendChild(drag);
-
-                        // Tạo mục tiêu
-                        const target = document.createElement('div');
-                        target.className = 'target-zone';
-                        target.textContent = 'ĐÍCH';
-                        target.style.right = '30px';
-                        target.style.bottom = '30px';
-                        container.appendChild(target);
-
-                        let isDragging = false;
-                        let offsetX, offsetY;
-
-                        const onStart = (e) => {
-                            e.preventDefault();
-                            isDragging = true;
-                            const rect = drag.getBoundingClientRect();
-                            const containerRect = container.getBoundingClientRect();
-                            offsetX = (e.clientX || e.touches[0].clientX) - rect.left;
-                            offsetY = (e.clientY || e.touches[0].clientY) - rect.top;
-                            drag.style.cursor = 'grabbing';
-                        };
-
-                        const onMove = (e) => {
-                            if (!isDragging) return;
-                            e.preventDefault();
-                            const clientX = e.clientX || e.touches[0].clientX;
-                            const clientY = e.clientY || e.touches[0].clientY;
-                            const containerRect = container.getBoundingClientRect();
-                            let left = clientX - containerRect.left - offsetX;
-                            let top = clientY - containerRect.top - offsetY;
-                            left = Math.max(0, Math.min(left, containerRect.width - drag.offsetWidth));
-                            top = Math.max(0, Math.min(top, containerRect.height - drag.offsetHeight));
-                            drag.style.left = left + 'px';
-                            drag.style.top = top + 'px';
-
-                            // Kiểm tra chạm mục tiêu
-                            const dragRect = drag.getBoundingClientRect();
-                            const targetRect = target.getBoundingClientRect();
-                            if (dragRect.left < targetRect.right - 10 &&
-                                dragRect.right > targetRect.left + 10 &&
-                                dragRect.top < targetRect.bottom - 10 &&
-                                dragRect.bottom > targetRect.top + 10) {
-                                target.classList.add('success');
-                                target.textContent = '✅ ĐẠT!';
-                                drag.style.display = 'none';
-                                isDragging = false;
-                                onComplete();
-                            }
-                        };
-
-                        const onEnd = () => {
-                            isDragging = false;
-                            drag.style.cursor = 'grab';
-                        };
-
-                        drag.addEventListener('mousedown', onStart);
-                        drag.addEventListener('touchstart', onStart, { passive: false });
-                        document.addEventListener('mousemove', onMove);
-                        document.addEventListener('touchmove', onMove, { passive: false });
-                        document.addEventListener('mouseup', onEnd);
-                        document.addEventListener('touchend', onEnd);
-
-                        // Lưu cleanup
-                        container._cleanup = () => {
-                            document.removeEventListener('mousemove', onMove);
-                            document.removeEventListener('touchmove', onMove);
-                            document.removeEventListener('mouseup', onEnd);
-                            document.removeEventListener('touchend', onEnd);
-                        };
-                    }
-                },
-                {
-                    title: "Tránh tường!",
-                    description: "Di chuyển chuột vào vùng an toàn, đừng chạm tường",
-                    render: function(container, onComplete) {
-                        container.innerHTML = '';
-                        // Tạo tường ngẫu nhiên
-                        const walls = [];
-                        for (let i = 0; i < 4; i++) {
-                            const wall = document.createElement('div');
-                            wall.className = 'wall';
-                            wall.style.width = (Math.random() * 50 + 30) + 'px';
-                            wall.style.height = (Math.random() * 50 + 30) + 'px';
-                            wall.style.left = (Math.random() * 70 + 10) + '%';
-                            wall.style.top = (Math.random() * 70 + 10) + '%';
-                            wall.style.transform = `rotate(${Math.random() * 30 - 15}deg)`;
-                            container.appendChild(wall);
-                            walls.push(wall);
-                        }
-
-                        // Vùng an toàn (mục tiêu)
-                        const safeZone = document.createElement('div');
-                        safeZone.className = 'target-zone';
-                        safeZone.textContent = 'AN TOÀN';
-                        safeZone.style.left = '50%';
-                        safeZone.style.top = '50%';
-                        safeZone.style.transform = 'translate(-50%, -50%)';
-                        safeZone.style.width = '120px';
-                        safeZone.style.height = '120px';
-                        safeZone.style.borderColor = '#2d7a2d';
-                        container.appendChild(safeZone);
-
-                        let isCompleted = false;
-
-                        const checkMouse = (e) => {
-                            if (isCompleted) return;
-                            const rect = container.getBoundingClientRect();
-                            const mx = e.clientX - rect.left;
-                            const my = e.clientY - rect.top;
-
-                            // Kiểm tra có chạm tường không
-                            let hitWall = false;
-                            walls.forEach(w => {
-                                const wr = w.getBoundingClientRect();
-                                const cr = container.getBoundingClientRect();
-                                if (mx > wr.left - cr.left - 5 && mx < wr.right - cr.left + 5 &&
-                                    my > wr.top - cr.top - 5 && my < wr.bottom - cr.top + 5) {
-                                    hitWall = true;
-                                }
-                            });
-
-                            if (hitWall) {
-                                safeZone.textContent = '💥 CHẠM TƯỜNG!';
-                                safeZone.style.borderColor = '#cc3333';
-                                safeZone.style.background = 'rgba(200, 50, 50, 0.3)';
-                                // Thất bại nhưng vẫn cho thử lại
-                                setTimeout(() => {
-                                    safeZone.textContent = 'AN TOÀN';
-                                    safeZone.style.borderColor = '#2d7a2d';
-                                    safeZone.style.background = 'rgba(45, 122, 45, 0.15)';
-                                }, 500);
-                                return;
-                            }
-
-                            // Kiểm tra vào vùng an toàn
-                            const szRect = safeZone.getBoundingClientRect();
-                            if (mx > szRect.left - rect.left + 5 && mx < szRect.right - rect.left - 5 &&
-                                my > szRect.top - rect.top + 5 && my < szRect.bottom - rect.top - 5) {
-                                isCompleted = true;
-                                safeZone.classList.add('success');
-                                safeZone.textContent = '✅ AN TOÀN!';
-                                onComplete();
-                            }
-                        };
-
-                        container.addEventListener('mousemove', checkMouse);
-                        // Cho phép di chuyển chuột bên ngoài để thử
-                        container._cleanup = () => {
-                            container.removeEventListener('mousemove', checkMouse);
-                        };
-                    }
-                },
-                {
-                    title: "Nhấn đúng nút",
-                    description: "Tìm và nhấn nút ẩn (di chuột xung quanh)",
-                    render: function(container, onComplete) {
-                        container.innerHTML = '';
-                        // Tạo nhiều nút giả
-                        const fakeBtns = [];
-                        for (let i = 0; i < 8; i++) {
-                            const btn = document.createElement('button');
-                            btn.className = 'action-btn';
-                            btn.textContent = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'][i];
-                            btn.style.position = 'absolute';
-                            btn.style.left = (Math.random() * 70 + 10) + '%';
-                            btn.style.top = (Math.random() * 70 + 10) + '%';
-                            btn.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
-                            btn.style.background = '#6b4f3a';
-                            btn.style.boxShadow = '0 6px 0 #3d2a1c';
-                            btn.style.fontSize = '1rem';
-                            btn.style.padding = '0.5rem 1rem';
-                            btn.style.pointerEvents = 'none';
-                            container.appendChild(btn);
-                            fakeBtns.push(btn);
-                        }
-
-                        // Nút thật (ẩn)
-                        const realBtn = document.createElement('button');
-                        realBtn.className = 'action-btn';
-                        realBtn.textContent = '👆 TÔI ĐÂY!';
-                        realBtn.style.position = 'absolute';
-                        realBtn.style.left = '30%';
-                        realBtn.style.top = '40%';
-                        realBtn.style.background = '#2d7a2d';
-                        realBtn.style.boxShadow = '0 6px 0 #1a4a1a';
-                        realBtn.style.opacity = '0.1';
-                        realBtn.style.transition = 'opacity 0.3s';
-                        realBtn.style.pointerEvents = 'auto';
-                        container.appendChild(realBtn);
-
-                        // Hiện nút khi di chuột đến gần
-                        let revealed = false;
-                        const revealBtn = (e) => {
-                            if (revealed) return;
-                            const rect = container.getBoundingClientRect();
-                            const mx = e.clientX - rect.left;
-                            const my = e.clientY - rect.top;
-                            const btnRect = realBtn.getBoundingClientRect();
-                            const dist = Math.sqrt(
-                                Math.pow(mx - (btnRect.left - rect.left + btnRect.width/2), 2) +
-                                Math.pow(my - (btnRect.top - rect.top + btnRect.height/2), 2)
-                            );
-                            if (dist < 150) {
-                                realBtn.style.opacity = '1';
-                                realBtn.style.transform = 'scale(1.2)';
-                                revealed = true;
-                            }
-                        };
-
-                        const clickReal = () => {
-                            if (!revealed) return;
-                            realBtn.classList.add('success');
-                            realBtn.textContent = '✅ TÌM THẤY!';
-                            onComplete();
-                        };
-
-                        container.addEventListener('mousemove', revealBtn);
-                        realBtn.addEventListener('click', clickReal);
-
-                        container._cleanup = () => {
-                            container.removeEventListener('mousemove', revealBtn);
-                            realBtn.removeEventListener('click', clickReal);
-                        };
-                    }
-                },
-                {
-                    title: "Đếm số lần",
-                    description: "Click vào vật thể đúng số lần (3 lần)",
-                    render: function(container, onComplete) {
-                        container.innerHTML = '';
-                        let count = 0;
-                        const targetCount = 3;
-
-                        const obj = document.createElement('div');
-                        obj.className = 'drag-object';
-                        obj.textContent = '🎯';
-                        obj.style.left = '50%';
-                        obj.style.top = '50%';
-                        obj.style.transform = 'translate(-50%, -50%)';
-                        obj.style.width = '80px';
-                        obj.style.height = '80px';
-                        obj.style.fontSize = '3rem';
-                        obj.style.cursor = 'pointer';
-                        obj.style.background = 'radial-gradient(circle at 30% 30%, #44aaff, #0066cc)';
-                        obj.style.boxShadow = '0 8px 0 #004488, 0 8px 15px rgba(0,0,0,0.3)';
-                        container.appendChild(obj);
-
-                        const counter = document.createElement('div');
-                        counter.style.position = 'absolute';
-                        counter.style.top = '10px';
-                        counter.style.right = '20px';
-                        counter.style.fontSize = '1.5rem';
-                        counter.style.fontWeight = 'bold';
-                        counter.style.background = 'rgba(0,0,0,0.6)';
-                        counter.style.color = 'white';
-                        counter.style.padding = '0.3rem 1rem';
-                        counter.style.borderRadius = '30px';
-                        counter.textContent = `0 / ${targetCount}`;
-                        container.appendChild(counter);
-
-                        const clickHandler = () => {
-                            count++;
-                            counter.textContent = `${count} / ${targetCount}`;
-                            obj.style.transform = `translate(-50%, -50%) scale(${1 + count * 0.1})`;
-                            if (count >= targetCount) {
-                                obj.style.background = 'radial-gradient(circle at 30% 30%, #44ff88, #00aa44)';
-                                obj.textContent = '✅';
-                                counter.textContent = '✅ HOÀN THÀNH!';
-                                obj.removeEventListener('click', clickHandler);
-                                onComplete();
-                            }
-                        };
-
-                        obj.addEventListener('click', clickHandler);
-                        container._cleanup = () => {
-                            obj.removeEventListener('click', clickHandler);
-                        };
-                    }
-                },
-                {
-                    title: "Di chuyển vật đến góc",
-                    description: "Kéo vật vào góc dưới bên phải",
-                    render: function(container, onComplete) {
-                        container.innerHTML = '';
-                        const drag = document.createElement('div');
-                        drag.className = 'drag-object';
-                        drag.textContent = '⬛';
+                        drag.textContent = '😤';
                         drag.style.left = '20px';
                         drag.style.top = '20px';
-                        drag.style.width = '60px';
-                        drag.style.height = '60px';
-                        drag.style.fontSize = '2.5rem';
-                        drag.style.background = 'radial-gradient(circle at 30% 30%, #bb88ff, #7733cc)';
-                        drag.style.boxShadow = '0 8px 0 #4d1f8a, 0 8px 15px rgba(0,0,0,0.3)';
+                        drag.style.width = '55px';
+                        drag.style.height = '55px';
                         container.appendChild(drag);
 
-                        const corner = document.createElement('div');
-                        corner.className = 'target-zone';
-                        corner.textContent = '📌 GÓC';
-                        corner.style.right = '10px';
-                        corner.style.bottom = '10px';
-                        corner.style.width = '100px';
-                        corner.style.height = '100px';
-                        corner.style.borderColor = '#8844cc';
-                        corner.style.background = 'rgba(136, 68, 204, 0.15)';
-                        container.appendChild(corner);
+                        const target = document.createElement('div');
+                        target.className = 'target-zone';
+                        target.textContent = '🎯 CHẠY';
+                        target.style.left = targetX + '%';
+                        target.style.top = targetY + '%';
+                        target.style.width = '90px';
+                        target.style.height = '90px';
+                        container.appendChild(target);
 
-                        let isDragging = false;
-                        let offsetX, offsetY;
+                        // Đích di chuyển ngẫu nhiên
+                        moveInterval = setInterval(() => {
+                            if (document.querySelector('.target-zone.success')) return;
+                            targetX = Math.random() * 65 + 10;
+                            targetY = Math.random() * 65 + 10;
+                            target.style.left = targetX + '%';
+                            target.style.top = targetY + '%';
+                        }, 600);
+
+                        let isDragging = false, offsetX, offsetY;
 
                         const onStart = (e) => {
                             e.preventDefault();
@@ -678,15 +402,15 @@
                             drag.style.left = left + 'px';
                             drag.style.top = top + 'px';
 
-                            // Kiểm tra góc
                             const dragRect = drag.getBoundingClientRect();
-                            const cornerRect = corner.getBoundingClientRect();
-                            if (dragRect.left > cornerRect.left - 5 &&
-                                dragRect.right < cornerRect.right + 5 &&
-                                dragRect.top > cornerRect.top - 5 &&
-                                dragRect.bottom < cornerRect.bottom + 5) {
-                                corner.classList.add('success');
-                                corner.textContent = '✅ ĐÚNG GÓC!';
+                            const targetRect = target.getBoundingClientRect();
+                            if (dragRect.left < targetRect.right - 5 &&
+                                dragRect.right > targetRect.left + 5 &&
+                                dragRect.top < targetRect.bottom - 5 &&
+                                dragRect.bottom > targetRect.top + 5) {
+                                clearInterval(moveInterval);
+                                target.classList.add('success');
+                                target.textContent = '✅ BẮT ĐƯỢC!';
                                 drag.style.display = 'none';
                                 isDragging = false;
                                 onComplete();
@@ -703,16 +427,395 @@
                         document.addEventListener('touchend', onEnd);
 
                         container._cleanup = () => {
+                            clearInterval(moveInterval);
                             document.removeEventListener('mousemove', onMove);
                             document.removeEventListener('touchmove', onMove);
                             document.removeEventListener('mouseup', onEnd);
                             document.removeEventListener('touchend', onEnd);
                         };
                     }
+                },
+                // 2. Nhấn nút đúng thứ tự (1, 2, 3, 4, 5)
+                {
+                    title: "Nhấn theo thứ tự",
+                    description: "Nhấn các nút theo thứ tự từ 1 → 5 (nút sẽ đảo vị trí)",
+                    render: function(container, onComplete) {
+                        container.innerHTML = '';
+                        let nextNumber = 1;
+                        const total = 5;
+                        const buttons = [];
+
+                        // Tạo 5 nút với số ngẫu nhiên
+                        const numbers = [1, 2, 3, 4, 5];
+                        for (let i = 0; i < total; i++) {
+                            const btn = document.createElement('button');
+                            btn.className = 'action-btn';
+                            btn.textContent = numbers[i];
+                            btn.style.position = 'absolute';
+                            btn.style.left = (10 + Math.random() * 70) + '%';
+                            btn.style.top = (10 + Math.random() * 70) + '%';
+                            btn.style.fontSize = '1.5rem';
+                            btn.style.padding = '0.5rem 1.2rem';
+                            btn.style.background = '#6b4f3a';
+                            btn.style.boxShadow = '0 6px 0 #3d2a1c';
+                            btn.dataset.value = numbers[i];
+                            container.appendChild(btn);
+                            buttons.push(btn);
+                        }
+
+                        // Hàm xáo trộn vị trí
+                        function shuffleButtons() {
+                            buttons.forEach(b => {
+                                b.style.left = (10 + Math.random() * 70) + '%';
+                                b.style.top = (10 + Math.random() * 70) + '%';
+                            });
+                        }
+
+                        // Xáo mỗi 2 giây
+                        const shuffleInterval = setInterval(() => {
+                            if (nextNumber > total) return;
+                            shuffleButtons();
+                        }, 1800);
+
+                        const clickHandler = (e) => {
+                            const btn = e.currentTarget;
+                            const val = parseInt(btn.dataset.value);
+                            if (val === nextNumber) {
+                                btn.style.background = '#2d8f2d';
+                                btn.style.boxShadow = '0 6px 0 #1a5a1a';
+                                btn.style.pointerEvents = 'none';
+                                btn.textContent = '✅';
+                                nextNumber++;
+                                if (nextNumber > total) {
+                                    clearInterval(shuffleInterval);
+                                    setTimeout(() => {
+                                        onComplete();
+                                    }, 300);
+                                }
+                            } else {
+                                // Sai -> đau
+                                btn.style.background = '#cc3333';
+                                btn.style.boxShadow = '0 6px 0 #771111';
+                                setTimeout(() => {
+                                    btn.style.background = '#6b4f3a';
+                                    btn.style.boxShadow = '0 6px 0 #3d2a1c';
+                                }, 300);
+                            }
+                        };
+
+                        buttons.forEach(b => b.addEventListener('click', clickHandler));
+
+                        container._cleanup = () => {
+                            clearInterval(shuffleInterval);
+                            buttons.forEach(b => b.removeEventListener('click', clickHandler));
+                        };
+                    }
+                },
+                // 3. Bấm đúng số lần nhưng đếm ngược
+                {
+                    title: "Đếm ngược",
+                    description: "Bấm vào vật thể đúng 5 lần, nhưng số đếm ngược",
+                    render: function(container, onComplete) {
+                        container.innerHTML = '';
+                        let count = 5;
+                        const targetCount = 5;
+
+                        const obj = document.createElement('div');
+                        obj.className = 'drag-object';
+                        obj.textContent = '🔴';
+                        obj.style.left = '50%';
+                        obj.style.top = '50%';
+                        obj.style.transform = 'translate(-50%, -50%)';
+                        obj.style.width = '90px';
+                        obj.style.height = '90px';
+                        obj.style.fontSize = '3.5rem';
+                        obj.style.cursor = 'pointer';
+                        obj.style.background = 'radial-gradient(circle at 30% 30%, #ff4444, #aa2222)';
+                        obj.style.boxShadow = '0 8px 0 #661111';
+                        container.appendChild(obj);
+
+                        const counter = document.createElement('div');
+                        counter.style.position = 'absolute';
+                        counter.style.top = '10px';
+                        counter.style.left = '50%';
+                        counter.style.transform = 'translateX(-50%)';
+                        counter.style.fontSize = '2rem';
+                        counter.style.fontWeight = 'bold';
+                        counter.style.background = 'rgba(0,0,0,0.7)';
+                        counter.style.color = '#ffaa44';
+                        counter.style.padding = '0.2rem 1.5rem';
+                        counter.style.borderRadius = '40px';
+                        counter.textContent = `${count}`;
+                        container.appendChild(counter);
+
+                        let clickCount = 0;
+                        const clickHandler = () => {
+                            clickCount++;
+                            count--;
+                            counter.textContent = count > 0 ? count : '🔥';
+                            obj.style.transform = `translate(-50%, -50%) scale(${1 + clickCount * 0.15})`;
+
+                            if (clickCount === 1) {
+                                // Lần 1: đổi màu
+                                obj.style.background = 'radial-gradient(circle at 30% 30%, #ff8844, #cc5500)';
+                            } else if (clickCount === 2) {
+                                obj.textContent = '😈';
+                            } else if (clickCount === 3) {
+                                obj.style.background = 'radial-gradient(circle at 30% 30%, #44aaff, #0066cc)';
+                            } else if (clickCount === 4) {
+                                obj.textContent = '💢';
+                            }
+
+                            if (clickCount >= targetCount) {
+                                obj.style.background = 'radial-gradient(circle at 30% 30%, #44ff88, #00aa44)';
+                                obj.textContent = '✅';
+                                counter.textContent = '✅ HOÀN THÀNH!';
+                                obj.removeEventListener('click', clickHandler);
+                                onComplete();
+                            }
+                        };
+
+                        obj.addEventListener('click', clickHandler);
+                        container._cleanup = () => {
+                            obj.removeEventListener('click', clickHandler);
+                        };
+                    }
+                },
+                // 4. Kéo tránh vật thể di chuyển
+                {
+                    title: "Chạy trốn",
+                    description: "Kéo vật vào đích, tránh các chướng ngại di chuyển",
+                    render: function(container, onComplete) {
+                        container.innerHTML = '';
+                        const obstacles = [];
+                        const obstacleCount = 6;
+
+                        // Tạo chướng ngại di chuyển
+                        for (let i = 0; i < obstacleCount; i++) {
+                            const obs = document.createElement('div');
+                            obs.className = 'wall';
+                            obs.style.width = (30 + Math.random() * 25) + 'px';
+                            obs.style.height = (30 + Math.random() * 25) + 'px';
+                            obs.style.left = (Math.random() * 70 + 10) + '%';
+                            obs.style.top = (Math.random() * 70 + 10) + '%';
+                            obs.style.background = '#8a2a2a';
+                            obs.style.borderColor = '#551111';
+                            obs.style.borderRadius = '50%';
+                            obs.dataset.dx = (Math.random() - 0.5) * 2;
+                            obs.dataset.dy = (Math.random() - 0.5) * 2;
+                            container.appendChild(obs);
+                            obstacles.push(obs);
+                        }
+
+                        // Vật kéo
+                        const drag = document.createElement('div');
+                        drag.className = 'drag-object';
+                        drag.textContent = '🏃';
+                        drag.style.left = '20px';
+                        drag.style.top = '60px';
+                        drag.style.width = '50px';
+                        drag.style.height = '50px';
+                        drag.style.fontSize = '2rem';
+                        drag.style.background = 'radial-gradient(circle at 30% 30%, #44ddff, #0088cc)';
+                        drag.style.boxShadow = '0 8px 0 #005588';
+                        container.appendChild(drag);
+
+                        // Đích
+                        const target = document.createElement('div');
+                        target.className = 'target-zone';
+                        target.textContent = '🏁 ĐÍCH';
+                        target.style.right = '20px';
+                        target.style.bottom = '20px';
+                        target.style.width = '100px';
+                        target.style.height = '100px';
+                        container.appendChild(target);
+
+                        let isDragging = false, offsetX, offsetY;
+                        let animFrame;
+
+                        // Di chuyển chướng ngại
+                        function moveObstacles() {
+                            obstacles.forEach(obs => {
+                                let left = parseFloat(obs.style.left);
+                                let top = parseFloat(obs.style.top);
+                                let dx = parseFloat(obs.dataset.dx);
+                                let dy = parseFloat(obs.dataset.dy);
+
+                                left += dx * 0.8;
+                                top += dy * 0.8;
+
+                                if (left < 5 || left > 85) { obs.dataset.dx = -dx; }
+                                if (top < 5 || top > 85) { obs.dataset.dy = -dy; }
+
+                                obs.style.left = left + '%';
+                                obs.style.top = top + '%';
+                            });
+                            animFrame = requestAnimationFrame(moveObstacles);
+                        }
+                        moveObstacles();
+
+                        const onStart = (e) => {
+                            e.preventDefault();
+                            isDragging = true;
+                            const rect = drag.getBoundingClientRect();
+                            const containerRect = container.getBoundingClientRect();
+                            offsetX = (e.clientX || e.touches[0].clientX) - rect.left;
+                            offsetY = (e.clientY || e.touches[0].clientY) - rect.top;
+                        };
+
+                        const onMove = (e) => {
+                            if (!isDragging) return;
+                            e.preventDefault();
+                            const clientX = e.clientX || e.touches[0].clientX;
+                            const clientY = e.clientY || e.touches[0].clientY;
+                            const containerRect = container.getBoundingClientRect();
+                            let left = clientX - containerRect.left - offsetX;
+                            let top = clientY - containerRect.top - offsetY;
+                            left = Math.max(0, Math.min(left, containerRect.width - drag.offsetWidth));
+                            top = Math.max(0, Math.min(top, containerRect.height - drag.offsetHeight));
+                            drag.style.left = left + 'px';
+                            drag.style.top = top + 'px';
+
+                            // Kiểm tra va chạm chướng ngại
+                            const dragRect = drag.getBoundingClientRect();
+                            let hit = false;
+                            obstacles.forEach(obs => {
+                                const obsRect = obs.getBoundingClientRect();
+                                if (dragRect.left < obsRect.right - 2 &&
+                                    dragRect.right > obsRect.left + 2 &&
+                                    dragRect.top < obsRect.bottom - 2 &&
+                                    dragRect.bottom > obsRect.top + 2) {
+                                    hit = true;
+                                }
+                            });
+
+                            if (hit) {
+                                drag.style.background = 'radial-gradient(circle at 30% 30%, #ff4444, #aa0000)';
+                                setTimeout(() => {
+                                    drag.style.background = 'radial-gradient(circle at 30% 30%, #44ddff, #0088cc)';
+                                }, 200);
+                                return;
+                            }
+
+                            // Kiểm tra đến đích
+                            const targetRect = target.getBoundingClientRect();
+                            if (dragRect.left < targetRect.right - 5 &&
+                                dragRect.right > targetRect.left + 5 &&
+                                dragRect.top < targetRect.bottom - 5 &&
+                                dragRect.bottom > targetRect.top + 5) {
+                                target.classList.add('success');
+                                target.textContent = '✅ ĐẾN!';
+                                drag.style.display = 'none';
+                                isDragging = false;
+                                cancelAnimationFrame(animFrame);
+                                onComplete();
+                            }
+                        };
+
+                        const onEnd = () => { isDragging = false; };
+
+                        drag.addEventListener('mousedown', onStart);
+                        drag.addEventListener('touchstart', onStart, { passive: false });
+                        document.addEventListener('mousemove', onMove);
+                        document.addEventListener('touchmove', onMove, { passive: false });
+                        document.addEventListener('mouseup', onEnd);
+                        document.addEventListener('touchend', onEnd);
+
+                        container._cleanup = () => {
+                            cancelAnimationFrame(animFrame);
+                            document.removeEventListener('mousemove', onMove);
+                            document.removeEventListener('touchmove', onMove);
+                            document.removeEventListener('mouseup', onEnd);
+                            document.removeEventListener('touchend', onEnd);
+                        };
+                    }
+                },
+                // 5. Bấm nút 100 lần (ức chế nhất)
+                {
+                    title: "Bấm 100 lần",
+                    description: "Bấm vào nút 100 lần. Đếm ngược từ 100",
+                    render: function(container, onComplete) {
+                        container.innerHTML = '';
+                        let count = 100;
+
+                        const btn = document.createElement('button');
+                        btn.className = 'action-btn';
+                        btn.textContent = '👆 BẤM TÔI';
+                        btn.style.position = 'absolute';
+                        btn.style.left = '50%';
+                        btn.style.top = '50%';
+                        btn.style.transform = 'translate(-50%, -50%)';
+                        btn.style.fontSize = '2rem';
+                        btn.style.padding = '1rem 2.5rem';
+                        btn.style.background = '#cc4444';
+                        btn.style.boxShadow = '0 8px 0 #771111';
+                        btn.style.width = '200px';
+                        btn.style.height = '80px';
+                        container.appendChild(btn);
+
+                        const counter = document.createElement('div');
+                        counter.style.position = 'absolute';
+                        counter.style.top = '10px';
+                        counter.style.right = '20px';
+                        counter.style.fontSize = '2rem';
+                        counter.style.fontWeight = 'bold';
+                        counter.style.background = 'rgba(0,0,0,0.7)';
+                        counter.style.color = '#ffaa44';
+                        counter.style.padding = '0.2rem 1.5rem';
+                        counter.style.borderRadius = '40px';
+                        counter.textContent = `${count}`;
+                        container.appendChild(counter);
+
+                        // Thanh tiến trình
+                        const progress = document.createElement('div');
+                        progress.style.position = 'absolute';
+                        progress.style.bottom = '10px';
+                        progress.style.left = '10%';
+                        progress.style.width = '80%';
+                        progress.style.height = '12px';
+                        progress.style.background = '#333';
+                        progress.style.borderRadius = '20px';
+                        progress.style.overflow = 'hidden';
+                        const fill = document.createElement('div');
+                        fill.style.height = '100%';
+                        fill.style.width = '0%';
+                        fill.style.background = 'linear-gradient(90deg, #ff4444, #ffaa00, #44ff44)';
+                        fill.style.transition = 'width 0.05s';
+                        progress.appendChild(fill);
+                        container.appendChild(progress);
+
+                        const clickHandler = () => {
+                            count--;
+                            counter.textContent = count > 0 ? count : '🔥';
+                            const progressPercent = ((100 - count) / 100) * 100;
+                            fill.style.width = progressPercent + '%';
+
+                            // Đổi màu nút theo tiến trình
+                            if (count > 70) btn.style.background = '#cc4444';
+                            else if (count > 40) btn.style.background = '#cc8844';
+                            else if (count > 10) btn.style.background = '#44aa44';
+                            else btn.style.background = '#44dd44';
+
+                            btn.textContent = count > 0 ? `👆 CÒN ${count}` : '🎉';
+
+                            if (count <= 0) {
+                                btn.textContent = '✅ HOÀN THÀNH!';
+                                btn.style.background = '#44dd44';
+                                btn.style.boxShadow = '0 8px 0 #228822';
+                                btn.removeEventListener('click', clickHandler);
+                                setTimeout(onComplete, 400);
+                            }
+                        };
+
+                        btn.addEventListener('click', clickHandler);
+                        container._cleanup = () => {
+                            btn.removeEventListener('click', clickHandler);
+                        };
+                    }
                 }
             ];
 
-            // ====== QUẢN LÝ TRẠNG THÁI ======
+            // ====== QUẢN LÝ ======
             let currentChallengeIndex = 0;
             let completedCount = 0;
             let isGameFinished = false;
@@ -721,11 +824,9 @@
             const resultText = document.getElementById('resultText');
             const resetBtn = document.getElementById('resetBtn');
 
-            // Cleanup function
             let currentCleanup = null;
 
             function loadChallenge(index) {
-                // Cleanup cũ
                 if (currentCleanup) {
                     currentCleanup();
                     currentCleanup = null;
@@ -741,19 +842,15 @@
                 resultText.textContent = challenge.description;
                 isGameFinished = false;
 
-                // Render challenge
                 challenge.render(actionArea, () => {
-                    // Hoàn thành thử thách
                     completedCount++;
                     resultText.textContent = `✅ Hoàn thành! (${completedCount}/${challenges.length})`;
-                    // Chuyển sang thử thách tiếp theo sau 0.8s
                     setTimeout(() => {
                         currentChallengeIndex++;
                         loadChallenge(currentChallengeIndex);
-                    }, 800);
+                    }, 700);
                 });
 
-                // Lưu cleanup
                 currentCleanup = actionArea._cleanup || null;
             }
 
@@ -766,63 +863,76 @@
                     currentCleanup = null;
                 }
 
-                // KIỂM TRA THẮNG (hoàn thành đủ 5)
                 if (completedCount === challenges.length) {
                     resultText.textContent = '🤯 BỊ LỪA RỒI!';
-                    // KÍCH HOẠT BAY
                     setTimeout(() => {
                         createFlyingElements();
+                        // Thêm thông báo "tốn 5 phút" sau 1.5s
+                        setTimeout(() => {
+                            showWastedMessage();
+                        }, 1500);
                     }, 300);
                 } else {
-                    resultText.textContent = `😅 Bạn chỉ hoàn thành ${completedCount}/5. Thử lại nhé!`;
+                    resultText.textContent = `😅 Chỉ ${completedCount}/5. Thử lại nhé!`;
                 }
             }
 
-            // ====== HIỆU ỨNG BAY ======
+            // ====== HIỆU ỨNG ======
             function createFlyingElements() {
-                document.querySelectorAll('.flying-text, .flying-image, .overlay-win').forEach(el => el.remove());
+                document.querySelectorAll('.flying-text, .flying-image, .overlay-win, .wasted-message').forEach(el => el.remove());
 
                 const overlay = document.createElement('div');
                 overlay.className = 'overlay-win';
                 document.body.appendChild(overlay);
 
-                const phrases = ["BỊ LỪA RỒI!", "HAHAHA!", "BỊ LỪA RỒI!", "ÔI TRỜI!", "LỪA ĐẢO!"];
-                for (let i = 0; i < 20; i++) {
+                const phrases = ["BỊ LỪA RỒI!", "HAHAHA!", "BỊ LỪA RỒI!", "ÔI TRỜI!", "LỪA ĐẢO!", "NGU NGƯỜI!"];
+                for (let i = 0; i < 25; i++) {
                     const el = document.createElement('div');
                     el.className = 'flying-text';
                     el.textContent = phrases[Math.floor(Math.random() * phrases.length)];
                     el.style.left = Math.random() * 85 + 5 + '%';
                     el.style.top = Math.random() * 85 + 5 + '%';
-                    el.style.fontSize = (Math.random() * 2.5 + 2.2) + 'rem';
-                    el.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                    el.style.animationDelay = (Math.random() * 1.2) + 's';
+                    el.style.fontSize = (Math.random() * 3 + 2) + 'rem';
+                    el.style.animationDuration = (Math.random() * 3.5 + 2.5) + 's';
+                    el.style.animationDelay = (Math.random() * 1.5) + 's';
                     el.style.transform = `rotate(${Math.random() * 60 - 30}deg)`;
-                    el.style.color = ['#ff3d1a', '#ff6a2a', '#ff2200', '#ff8844', '#ff5555'][Math.floor(Math.random() * 5)];
+                    el.style.color = ['#ff3d1a', '#ff6a2a', '#ff2200', '#ff8844', '#ff5555', '#ffaa00'][Math.floor(Math.random() * 6)];
                     document.body.appendChild(el);
                 }
 
-                for (let i = 0; i < 12; i++) {
+                for (let i = 0; i < 15; i++) {
                     const img = document.createElement('img');
                     img.className = 'flying-image';
                     img.src = IMAGE_URL;
                     img.alt = 'ảnh lừa';
                     img.style.left = Math.random() * 80 + 10 + '%';
                     img.style.top = Math.random() * 80 + 10 + '%';
-                    img.style.width = (Math.random() * 80 + 70) + 'px';
+                    img.style.width = (Math.random() * 100 + 60) + 'px';
                     img.style.height = img.style.width;
-                    img.style.animationDuration = (Math.random() * 3.5 + 3) + 's';
-                    img.style.animationDelay = (Math.random() * 1.5) + 's';
+                    img.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                    img.style.animationDelay = (Math.random() * 2) + 's';
                     document.body.appendChild(img);
                 }
 
                 setTimeout(() => {
                     document.querySelectorAll('.flying-text, .flying-image, .overlay-win').forEach(el => el.remove());
-                }, 7000);
+                }, 8000);
+            }
+
+            function showWastedMessage() {
+                const msg = document.createElement('div');
+                msg.className = 'wasted-message';
+                msg.textContent = '⏳ Chúc mừng bạn đã tốn 5 phút cuộc đời!';
+                document.body.appendChild(msg);
+
+                setTimeout(() => {
+                    msg.remove();
+                }, 6000);
             }
 
             // ====== RESET ======
             function resetGame() {
-                document.querySelectorAll('.flying-text, .flying-image, .overlay-win').forEach(el => el.remove());
+                document.querySelectorAll('.flying-text, .flying-image, .overlay-win, .wasted-message').forEach(el => el.remove());
                 if (currentCleanup) {
                     currentCleanup();
                     currentCleanup = null;
@@ -831,7 +941,7 @@
                 completedCount = 0;
                 isGameFinished = false;
                 actionArea.innerHTML = '';
-                resultText.textContent = '🤔 Hãy làm theo hướng dẫn...';
+                resultText.textContent = '🤔 Làm theo hướng dẫn...';
                 loadChallenge(0);
             }
 
