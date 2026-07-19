@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🐒 BỊ LỪA RỒI! - Có nhạc meme</title>
+    <title>🐒 BỊ LỪA RỒI! - Meme đồ ngu</title>
     <style>
         * {
             margin: 0;
@@ -240,7 +240,7 @@
                 <span class="emoji">🐒</span> BỊ LỪA RỒI!
                 <span class="sound-icon">🔊</span>
             </div>
-            <p class="subtitle">⚡ Bấm nút + nghe tiếng cười meme ⚡</p>
+            <p class="subtitle">⚡ "Đồ ngu đồ ăn hại" + chữ bay ⚡</p>
 
             <!-- Ảnh con vượn -->
             <div class="image-wrapper">
@@ -256,49 +256,74 @@
     </div>
 
     <script>
-        // =============================================
-        // 1. TẠO NHẠC MEME - TIẾNG CƯỜI
-        // =============================================
-        // Sử dụng file âm thanh meme tiếng cười từ nguồn miễn phí [citation:1][citation:3][citation:5]
-        // Nếu file này không tải được, sẽ chuyển sang file dự phòng
-        
-        const soundUrls = [
-            // Tiếng cười meme phổ biến [citation:1][citation:3]
-            'https://www.myinstants.com/media/sounds/do-ngu-do-an-hai.mp3',
+        // ============================================================
+        // CÁCH 1: SỬ DỤNG FILE ÂM THANH CỤC BỘ (ƯU TIÊN)
+        // Bạn tải file "do-ngu-do-an-hai.mp3" về cùng thư mục với file HTML
+        // ============================================================
+        const localSound = 'do-ngu-do-an-hai.mp3'; // 👈 Đặt tên file của bạn ở đây
+
+        // ============================================================
+        // CÁCH 2: SỬ DỤNG LINK DỰ PHÒNG (NẾU KHÔNG CÓ FILE CỤC BỘ)
+        // ============================================================
+        const fallbackSounds = [
             'https://www.myinstants.com/media/sounds/trollge.mp3',
-            'https://www.myinstants.com/media/sounds/vine-boom.mp3'
+            'https://www.myinstants.com/media/sounds/vine-boom.mp3',
+            'https://www.myinstants.com/media/sounds/roblox-death-sound_1.mp3'
         ];
 
         let audio = null;
+        let soundLoaded = false;
 
-        function playLaughSound() {
+        // ============================================================
+        // HÀM PHÁT NHẠC - THỬ TỪNG NGUỒN
+        // ============================================================
+        function playMemeSound() {
             try {
-                // Tạo audio mới
+                // Nếu đã có audio và đang phát thì dừng
+                if (audio && !audio.paused) {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+
                 audio = new Audio();
-                
-                // Chọn ngẫu nhiên 1 trong các file
-                const randomIndex = Math.floor(Math.random() * soundUrls.length);
-                audio.src = soundUrls[randomIndex];
-                
-                // Cài đặt âm lượng vừa phải
-                audio.volume = 0.7;
-                
-                // Phát nhạc
-                audio.play().catch(err => {
-                    console.log('Không thể phát nhạc meme, thử file khác...');
-                    // Thử file dự phòng
-                    audio.src = 'https://www.myinstants.com/media/sounds/trollge.mp3';
-                    audio.play().catch(() => console.log('Vẫn không phát được nhạc'));
+
+                // THỬ FILE CỤC BỘ TRƯỚC
+                audio.src = localSound;
+                audio.volume = 0.8;
+
+                // Nếu file cục bộ không tải được, thử các link dự phòng
+                let fallbackIndex = 0;
+
+                audio.onerror = function() {
+                    console.log('Không tải được file cục bộ, thử link dự phòng...');
+                    if (fallbackIndex < fallbackSounds.length) {
+                        audio.src = fallbackSounds[fallbackIndex];
+                        fallbackIndex++;
+                        audio.load();
+                        audio.play().catch(() => {
+                            // Nếu vẫn lỗi, thử tiếp
+                            audio.onerror();
+                        });
+                    } else {
+                        console.log('❌ Không thể phát âm thanh nào');
+                    }
+                };
+
+                audio.play().catch(() => {
+                    // Nếu play thất bại, kích hoạt onerror
+                    audio.onerror();
                 });
-                
+
+                soundLoaded = true;
+
             } catch (e) {
                 console.log('Lỗi phát nhạc:', e);
             }
         }
 
-        // =============================================
-        // 2. TẠO CHỮ BAY "BỊ LỪA RỒI!"
-        // =============================================
+        // ============================================================
+        // TẠO CHỮ BAY "BỊ LỪA RỒI!" + "ĐỒ NGU ĐỒ ĂN HẠI"
+        // ============================================================
         function createFlyingText() {
             // Xóa các phần tử cũ
             document.querySelectorAll('.flying-text, .overlay').forEach(el => el.remove());
@@ -308,7 +333,7 @@
             overlay.className = 'overlay';
             document.body.appendChild(overlay);
 
-            // Các biến thể câu chữ
+            // Các biến thể câu chữ - THÊM "ĐỒ NGU ĐỒ ĂN HẠI"
             const phrases = [
                 "BỊ LỪA RỒI!", 
                 "HAHAHA!", 
@@ -319,11 +344,14 @@
                 "BỊ LỪA RỒI!",
                 "🤣🤣🤣",
                 "THÔI RỒI!",
+                "ĐỒ NGU ĐỒ ĂN HẠI!",  // 👈 THÊM VÀO
+                "ĐỒ NGU!",
+                "ĂN HẠI!",
                 "BỊ LỪA RỒI!"
             ];
 
-            // Tạo 25 chữ bay
-            for (let i = 0; i < 25; i++) {
+            // Tạo 30 chữ bay (tăng số lượng)
+            for (let i = 0; i < 30; i++) {
                 const el = document.createElement('div');
                 el.className = 'flying-text';
                 el.textContent = phrases[Math.floor(Math.random() * phrases.length)];
@@ -337,7 +365,7 @@
                 el.style.transform = `rotate(${Math.random() * 60 - 30}deg)`;
                 
                 // Màu sắc đỏ cam
-                const colors = ['#ff2222', '#ff4444', '#ff6633', '#ff5555', '#ff3333', '#ff7744'];
+                const colors = ['#ff2222', '#ff4444', '#ff6633', '#ff5555', '#ff3333', '#ff7744', '#ffaa00'];
                 el.style.color = colors[Math.floor(Math.random() * colors.length)];
                 
                 document.body.appendChild(el);
@@ -349,14 +377,14 @@
             }, 7000);
         }
 
-        // =============================================
-        // 3. NÚT BẤM - KÍCH HOẠT HIỆU ỨNG + NHẠC
-        // =============================================
+        // ============================================================
+        // NÚT BẤM - KÍCH HOẠT HIỆU ỨNG + NHẠC MEME
+        // ============================================================
         const btnLua = document.getElementById('btnLua');
 
         btnLua.addEventListener('click', function() {
-            // Phát nhạc meme tiếng cười
-            playLaughSound();
+            // Phát nhạc meme "đồ ngu đồ ăn hại"
+            playMemeSound();
 
             // Đổi text nút
             this.textContent = '🔊 ĐANG LỪA...';
@@ -372,35 +400,38 @@
                     btnLua.textContent = '😈 LẠI NÀO!';
                     btnLua.disabled = false;
                     btnLua.style.opacity = '1';
-                }, 3000);
+                }, 3500);
             }, 200);
         });
 
-        // =============================================
-        // 4. TỰ ĐỘNG KÍCH HOẠT KHI VÀO TRANG
-        // =============================================
+        // ============================================================
+        // TỰ ĐỘNG KÍCH HOẠT KHI VÀO TRANG
+        // ============================================================
         setTimeout(() => {
             // Phát nhạc meme khi vào trang
-            playLaughSound();
+            playMemeSound();
             
             createFlyingText();
             
             // Tự động kích hoạt lại sau 8 giây
             setInterval(() => {
                 if (!btnLua.disabled) {
-                    playLaughSound();
+                    playMemeSound();
                     createFlyingText();
                 }
             }, 8000);
         }, 500);
 
-        // =============================================
-        // 5. XỬ LÝ LỖI - DỰ PHÒNG KHI KHÔNG CÓ INTERNET
-        // =============================================
-        // Nếu không tải được nhạc, vẫn có thể chạy hiệu ứng chữ bay
-
-        console.log('🐒 Trang lừa đảo với nhạc meme đã sẵn sàng!');
-        console.log('🔊 Nhấn nút để nghe tiếng cười + chữ bay!');
+        // ============================================================
+        // HƯỚNG DẪN CÁCH THÊM FILE NHẠC CỦA BẠN
+        // ============================================================
+        console.log('🐒 Trang lừa đảo với meme "đồ ngu đồ ăn hại" đã sẵn sàng!');
+        console.log('📌 CÁCH THÊM NHẠC CỦA BẠN:');
+        console.log('1. Tải file "do-ngu-do-an-hai.mp3" về từ SoundInstants');
+        console.log('2. Đặt file cùng thư mục với file HTML này');
+        console.log('3. Đổi tên file trong biến localSound (dòng 175) nếu cần');
+        console.log('4. Mở lại trang web và tận hưởng!');
+        console.log('🔊 Nhấn nút để nghe "ĐỒ NGU ĐỒ ĂN HẠI" + chữ bay!');
     </script>
 
 </body>
