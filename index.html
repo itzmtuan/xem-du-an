@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🐒 BỊ LỪA RỒI!</title>
+    <title>🐒 BỊ LỪA RỒI! - Có nhạc meme</title>
     <style>
         * {
             margin: 0;
@@ -126,6 +126,11 @@
         .btn:active {
             transform: scale(0.96);
         }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
 
         /* ===== CHỮ BAY ===== */
         .flying-text {
@@ -139,11 +144,6 @@
             animation: flyAround 4.5s linear forwards;
             white-space: nowrap;
             letter-spacing: 2px;
-        }
-
-        .flying-text.dark {
-            color: #ff4444;
-            text-shadow: 0 0 20px rgba(255, 50, 50, 0.4), 3px 3px 0 #4d1a0e;
         }
 
         @keyframes flyAround {
@@ -181,6 +181,17 @@
             z-index: 9997;
             pointer-events: none;
             backdrop-filter: blur(4px);
+        }
+
+        /* Biểu tượng âm thanh */
+        .sound-icon {
+            display: inline-block;
+            margin-left: 8px;
+            animation: soundPulse 0.8s ease-in-out infinite;
+        }
+        @keyframes soundPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
         /* ===== RESPONSIVE ===== */
@@ -227,8 +238,9 @@
         <div class="card">
             <div class="title">
                 <span class="emoji">🐒</span> BỊ LỪA RỒI!
+                <span class="sound-icon">🔊</span>
             </div>
-            <p class="subtitle">⚡ Đừng tin vào những gì bạn thấy ⚡</p>
+            <p class="subtitle">⚡ Bấm nút + nghe tiếng cười meme ⚡</p>
 
             <!-- Ảnh con vượn -->
             <div class="image-wrapper">
@@ -245,7 +257,47 @@
 
     <script>
         // =============================================
-        // 1. TẠO CHỮ BAY "BỊ LỪA RỒI!"
+        // 1. TẠO NHẠC MEME - TIẾNG CƯỜI
+        // =============================================
+        // Sử dụng file âm thanh meme tiếng cười từ nguồn miễn phí [citation:1][citation:3][citation:5]
+        // Nếu file này không tải được, sẽ chuyển sang file dự phòng
+        
+        const soundUrls = [
+            // Tiếng cười meme phổ biến [citation:1][citation:3]
+            'https://www.myinstants.com/media/sounds/roblox-death-sound_1.mp3',
+            'https://www.myinstants.com/media/sounds/vine-boom.mp3',
+            'https://www.myinstants.com/media/sounds/trollge.mp3'
+        ];
+
+        let audio = null;
+
+        function playLaughSound() {
+            try {
+                // Tạo audio mới
+                audio = new Audio();
+                
+                // Chọn ngẫu nhiên 1 trong các file
+                const randomIndex = Math.floor(Math.random() * soundUrls.length);
+                audio.src = soundUrls[randomIndex];
+                
+                // Cài đặt âm lượng vừa phải
+                audio.volume = 0.7;
+                
+                // Phát nhạc
+                audio.play().catch(err => {
+                    console.log('Không thể phát nhạc meme, thử file khác...');
+                    // Thử file dự phòng
+                    audio.src = 'https://www.myinstants.com/media/sounds/trollge.mp3';
+                    audio.play().catch(() => console.log('Vẫn không phát được nhạc'));
+                });
+                
+            } catch (e) {
+                console.log('Lỗi phát nhạc:', e);
+            }
+        }
+
+        // =============================================
+        // 2. TẠO CHỮ BAY "BỊ LỪA RỒI!"
         // =============================================
         function createFlyingText() {
             // Xóa các phần tử cũ
@@ -298,17 +350,20 @@
         }
 
         // =============================================
-        // 2. NÚT BẤM - KÍCH HOẠT HIỆU ỨNG
+        // 3. NÚT BẤM - KÍCH HOẠT HIỆU ỨNG + NHẠC
         // =============================================
         const btnLua = document.getElementById('btnLua');
 
         btnLua.addEventListener('click', function() {
+            // Phát nhạc meme tiếng cười
+            playLaughSound();
+
             // Đổi text nút
-            this.textContent = '🔥 ĐANG LỪA...';
+            this.textContent = '🔊 ĐANG LỪA...';
             this.disabled = true;
             this.style.opacity = '0.6';
 
-            // Kích hoạt chữ bay sau 0.3s
+            // Kích hoạt chữ bay sau 0.2s
             setTimeout(() => {
                 createFlyingText();
                 
@@ -318,25 +373,34 @@
                     btnLua.disabled = false;
                     btnLua.style.opacity = '1';
                 }, 3000);
-            }, 300);
+            }, 200);
         });
 
         // =============================================
-        // 3. TỰ ĐỘNG KÍCH HOẠT KHI VÀO TRANG
+        // 4. TỰ ĐỘNG KÍCH HOẠT KHI VÀO TRANG
         // =============================================
         setTimeout(() => {
+            // Phát nhạc meme khi vào trang
+            playLaughSound();
+            
             createFlyingText();
             
             // Tự động kích hoạt lại sau 8 giây
             setInterval(() => {
                 if (!btnLua.disabled) {
+                    playLaughSound();
                     createFlyingText();
                 }
             }, 8000);
         }, 500);
 
-        console.log('🐒 Trang lừa đảo đã sẵn sàng!');
-        console.log('😈 Nhấn nút để xem chữ bay!');
+        // =============================================
+        // 5. XỬ LÝ LỖI - DỰ PHÒNG KHI KHÔNG CÓ INTERNET
+        // =============================================
+        // Nếu không tải được nhạc, vẫn có thể chạy hiệu ứng chữ bay
+
+        console.log('🐒 Trang lừa đảo với nhạc meme đã sẵn sàng!');
+        console.log('🔊 Nhấn nút để nghe tiếng cười + chữ bay!');
     </script>
 
 </body>
