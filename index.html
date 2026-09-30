@@ -16,6 +16,7 @@
     align-items: center;
     overflow: hidden;
     position: relative;
+    padding: 20px;
   }
 
   .container {
@@ -28,6 +29,7 @@
     z-index: 10;
     animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     max-width: 90vw;
+    width: 600px;
   }
 
   @keyframes popIn {
@@ -36,7 +38,7 @@
   }
 
   h1 {
-    font-size: 2.5em;
+    font-size: 2.2em;
     background: linear-gradient(45deg, #f093fb, #f5576c, #4facfe);
     background-size: 200% 200%;
     -webkit-background-clip: text;
@@ -73,6 +75,21 @@
     line-height: 1.6;
   }
 
+  .question {
+    font-size: 1.4em;
+    color: #333;
+    font-weight: bold;
+    margin: 30px 0;
+    line-height: 1.5;
+  }
+
+  .question .highlight {
+    background: linear-gradient(45deg, #f5576c, #f093fb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.3em;
+  }
+
   button {
     font-size: 1.2em;
     padding: 15px 40px;
@@ -84,7 +101,7 @@
     cursor: pointer;
     box-shadow: 0 10px 20px rgba(245, 87, 108, 0.4);
     transition: all 0.3s;
-    margin: 5px;
+    margin: 8px;
   }
 
   button:hover {
@@ -94,14 +111,22 @@
 
   button:active { transform: translateY(0); }
 
+  #yesBtn {
+    background: linear-gradient(45deg, #43e97b, #38f9d7);
+    box-shadow: 0 10px 20px rgba(67, 233, 123, 0.4);
+  }
+
+  #yesBtn:hover {
+    box-shadow: 0 15px 30px rgba(67, 233, 123, 0.6);
+  }
+
   #noBtn {
     background: linear-gradient(45deg, #95a5a6, #7f8c8d);
     box-shadow: 0 10px 20px rgba(149, 165, 166, 0.4);
     position: relative;
-    transition: all 0.2s;
+    transition: all 0.25s;
   }
 
-  /* Emoji bay lên */
   .emoji-float {
     position: fixed;
     font-size: 2.5em;
@@ -115,7 +140,6 @@
     100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; }
   }
 
-  /* Confetti */
   .confetti {
     position: fixed;
     width: 12px;
@@ -129,18 +153,31 @@
     to { transform: translateY(110vh) rotate(720deg); }
   }
 
+  .money-rain {
+    position: fixed;
+    top: -80px;
+    font-size: 3em;
+    z-index: 9997;
+    pointer-events: none;
+    animation: moneyFall linear forwards;
+  }
+
+  @keyframes moneyFall {
+    to { transform: translateY(110vh) rotate(360deg); }
+  }
+
   .hidden { display: none !important; }
 
   .final-message {
-    font-size: 1.5em;
+    font-size: 1.3em;
     line-height: 1.8;
     color: #333;
   }
 
   .final-message .big {
-    font-size: 2em;
+    font-size: 1.8em;
     display: block;
-    margin: 15px 0;
+    margin: 20px 0;
     background: linear-gradient(45deg, #f5576c, #4facfe);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -149,6 +186,7 @@
 
   .rainbow {
     animation: rainbow 2s linear infinite;
+    font-weight: bold;
   }
 
   @keyframes rainbow {
@@ -160,6 +198,15 @@
     83% { color: #9900ff; }
     100% { color: #ff0000; }
   }
+
+  @media (max-width: 500px) {
+    .container { padding: 35px 25px; }
+    h1 { font-size: 1.6em; }
+    .gift { font-size: 4em; }
+    .question { font-size: 1.1em; }
+    button { font-size: 1em; padding: 12px 25px; }
+    .final-message { font-size: 1.05em; }
+  }
 </style>
 </head>
 <body>
@@ -167,7 +214,7 @@
 <div class="container">
   <!-- Bước 1: Mời nhận quà -->
   <div id="step1">
-    <h1>🎁 Bạn Có Một Món Quà!</h1>
+    <h1>🎁 Quà Tặng Đặc Biệt!</h1>
     <div class="gift" id="giftIcon">🎁</div>
     <p>Nhấn vào hộp quà để xem điều bất ngờ nha! 😉</p>
     <button onclick="openGift()">Mở Quà Ngay</button>
@@ -175,13 +222,14 @@
 
   <!-- Bước 2: Câu hỏi yes/no -->
   <div id="step2" class="hidden">
-    <h1>😏 Câu Hỏi Quan Trọng</h1>
-    <p style="font-size:1.4em; color:#333; font-weight:bold;">
-      Bạn có yêu quý tui không? 🥺
+    <h1>💰 Câu Hỏi Triệu Đô</h1>
+    <p class="question">
+      Bạn có muốn tui tặng<br>
+      <span class="highlight">1 TỶ ĐỒNG</span> 💵 không?
     </p>
-    <div style="margin-top:30px;">
-      <button id="yesBtn" onclick="sayYes()">CÓ ❤️</button>
-      <button id="noBtn" onmouseover="runAway()" onclick="runAway()">KHÔNG 💔</button>
+    <div style="margin-top:20px;">
+      <button id="yesBtn" onclick="sayYes()">CÓ, MUỐN! 🤑</button>
+      <button id="noBtn" onmouseover="runAway()" onclick="runAway()">KHÔNG CẦN 💸</button>
     </div>
   </div>
 
@@ -211,18 +259,14 @@
     } catch(e) {}
   }
 
-  function playSadTrombone() {
-    const notes = [392, 370, 349, 330];
-    notes.forEach((f, i) => {
-      setTimeout(() => playTone(f, 0.4, 'sawtooth'), i * 350);
-    });
-  }
-
   function playVictory() {
     const notes = [523, 659, 784, 1047];
-    notes.forEach((f, i) => {
-      setTimeout(() => playTone(f, 0.2), i * 120);
-    });
+    notes.forEach((f, i) => setTimeout(() => playTone(f, 0.2), i * 120));
+  }
+
+  function playCoinSound() {
+    playTone(988, 0.08, 'square');
+    setTimeout(() => playTone(1319, 0.15, 'square'), 80);
   }
 
   // ===== Bước 1: Mở quà =====
@@ -236,35 +280,32 @@
   // ===== Bước 2: Nút KHÔNG chạy trốn =====
   let noCount = 0;
   const noTexts = [
-    'KHÔNG 💔',
+    'KHÔNG CẦN 💸',
     'Chắc chưa? 🤨',
-    'Nghĩ lại đi 😢',
-    'Buồn đó nha 😭',
-    'Đừng mà 🥺',
-    'Thật hả? 😱',
-    'Tui khóc đó 😭😭',
-    'Huhu... 😿',
+    '1 tỷ đó nghen! 😱',
+    'Tiền đó bạn ơi! 💰',
+    'Đừng từ chối 😢',
+    'Suy nghĩ lại đi! 🥺',
+    '1 tỷ = 1000 triệu đó 😳',
+    'Mua được biệt thự luôn 🏰',
+    'Mua được siêu xe 🏎️',
     'Nút này bị lỗi rồi 🤪',
     'Bấm CÓ đi mà 🙏',
     'Không cho bấm nữa 😤',
     'Chạy đâu cho thoát 🏃',
     'Bắt được rồi nè 😏',
-    'Chịu thua đi 😂',
-    'Vô ích thôi 🤣'
+    'Từ chối 1 tỷ = điên 🤣'
   ];
 
   function runAway() {
     const btn = document.getElementById('noBtn');
     noCount++;
     
-    // Đổi text
     btn.textContent = noTexts[Math.min(noCount, noTexts.length - 1)];
     
-    // Thu nhỏ dần
     const scale = Math.max(0.2, 1 - noCount * 0.06);
     btn.style.transform = `scale(${scale})`;
     
-    // Nhảy vị trí ngẫu nhiên (chỉ trên desktop)
     if (window.innerWidth > 768) {
       const x = (Math.random() - 0.5) * 400;
       const y = (Math.random() - 0.5) * 300;
@@ -273,7 +314,6 @@
     
     playTone(200 + Math.random() * 300, 0.1, 'square');
     
-    // Nếu bấm quá nhiều -> tự động "CÓ"
     if (noCount > 12) {
       btn.disabled = true;
       btn.textContent = 'Thoát không được đâu 😂';
@@ -286,30 +326,29 @@
     document.getElementById('step2').classList.add('hidden');
     document.getElementById('step3').classList.remove('hidden');
     
-    const messages = [
-      'Biết ngay mà! 🥰<br>Tui cũng quý bạn lắm!',
-      'Hehe, cảm động quá! 😍<br>Bạn là nhất luôn!',
-      'Yêu bạn nhiều! 💕<br>Cảm ơn vì đã bấm CÓ!',
-      'Quá đỉnh! 🤩<br>Tình bạn chúng ta mãi đỉnh!'
-    ];
-    
     document.getElementById('finalMsg').innerHTML = 
-      messages[Math.floor(Math.random() * messages.length)] +
-      '<br><br><span class="big rainbow">🎉 CHÚC MỪNG BẠN ĐÃ BỊ LỪA! 🎉</span>' +
-      '<br><span style="color:#e74c3c; font-weight:bold;">Đây chỉ là web trêu thôi! 😜</span>' +
-      '<br><br>Nhưng mà... tui quý bạn thật đó! ❤️';
+      'Chúc mừng bạn đã chọn <b>"CÓ"</b>! 🎉<br>' +
+      'Vậy thì... tui sẽ tặng bạn...' +
+      '<br><span class="big rainbow">🎉 1 TỶ... LỜI CHÚC! 🎉</span>' +
+      '<br><span style="color:#e74c3c; font-weight:bold; font-size:1.1em;">' +
+      '😜 BẠN ĐÃ BỊ LỪA RỒI! 😜</span>' +
+      '<br><br>💵 Tiền thì không có...<br>' +
+      '🤑 Nhưng mà có nguyên <b>1 tỷ niềm vui</b> gửi tới bạn!<br>' +
+      '<br>Chúc bạn ngày càng <b>giàu</b>, <b>đẹp</b>, <b>may mắn</b> và <b>thành công</b>! ❤️<br>' +
+      '<br><i>— Từ người bạn đáng yêu của bạn 😘</i>';
     
-    // Bắn pháo hoa emoji
-    burstEmojis(['🎉', '🎊', '💖', '✨', '🌟', '🎈', '🥳', '💝'], 60);
+    // Mưa tiền + pháo hoa
+    burstEmojis(['🎉', '🎊', '💖', '✨', '🌟', '🎈', '🥳', '💝'], 50);
     createConfetti(80);
+    createMoneyRain(40);
     playVictory();
     
-    // Âm thanh vui nhộn sau đó
+    // Tiếng xu vàng leng keng
     setTimeout(() => {
-      [523, 587, 659, 698, 784].forEach((f, i) => 
-        setTimeout(() => playTone(f, 0.15), i * 100)
-      );
-    }, 500);
+      for (let i = 0; i < 8; i++) {
+        setTimeout(playCoinSound, i * 150);
+      }
+    }, 400);
   }
 
   // ===== Hiệu ứng emoji bay =====
@@ -348,7 +387,23 @@
     }
   }
 
-  // ===== Click vào hộp quà cũng mở =====
+  // ===== Mưa tiền 💵 =====
+  function createMoneyRain(count) {
+    const moneyEmojis = ['💵', '💰', '💸', '🤑', '💴', '💶', '💷', '🪙'];
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => {
+        const m = document.createElement('div');
+        m.className = 'money-rain';
+        m.textContent = moneyEmojis[Math.floor(Math.random() * moneyEmojis.length)];
+        m.style.left = Math.random() * 100 + 'vw';
+        m.style.animationDuration = (3 + Math.random() * 2) + 's';
+        document.body.appendChild(m);
+        setTimeout(() => m.remove(), 6000);
+      }, i * 80);
+    }
+  }
+
+  // ===== Click hộp quà =====
   document.getElementById('giftIcon').addEventListener('click', openGift);
 </script>
 </body>
