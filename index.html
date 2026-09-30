@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#764ba2">
+<meta name="theme-color" content="#ff6b9d">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<title>🎁 Quà Tặng Đặc Biệt Cho Bạn</title>
+<title>💌 Có Điều Muốn Nói Với Bạn...</title>
 <style>
   * {
     margin: 0;
@@ -25,7 +24,7 @@
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #a1c4fd 100%);
     background-attachment: fixed;
     min-height: 100vh;
     min-height: 100dvh;
@@ -41,12 +40,12 @@
   .container {
     text-align: center;
     background: rgba(255, 255, 255, 0.97);
-    padding: 30px 25px;
-    border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 35px 25px;
+    border-radius: 28px;
+    box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
     position: relative;
     z-index: 10;
-    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     width: 100%;
     max-width: 500px;
     max-height: 95vh;
@@ -56,19 +55,19 @@
   }
 
   @keyframes popIn {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+    0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0); opacity: 1; }
   }
 
   h1 {
-    font-size: 1.6em;
-    background: linear-gradient(45deg, #f093fb, #f5576c, #4facfe);
+    font-size: 1.7em;
+    background: linear-gradient(45deg, #ff6b9d, #c471ed, #f64f59);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 15px;
-    animation: gradientShift 3s ease infinite;
+    margin-bottom: 20px;
+    animation: gradientShift 4s ease infinite;
     line-height: 1.3;
   }
 
@@ -77,52 +76,62 @@
     50% { background-position: 100% 50%; }
   }
 
-  .gift {
+  .heart {
     font-size: 5em;
     margin: 10px 0;
     display: inline-block;
-    animation: shake 1.2s infinite;
+    animation: heartbeat 1.2s ease-in-out infinite;
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
+    filter: drop-shadow(0 8px 20px rgba(255, 107, 157, 0.5));
   }
 
-  @keyframes shake {
-    0%, 100% { transform: rotate(0deg) scale(1); }
-    25% { transform: rotate(-10deg) scale(1.08); }
-    75% { transform: rotate(10deg) scale(1.08); }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.25); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.15); }
+    60% { transform: scale(1); }
   }
 
   p {
     font-size: 1.05em;
-    color: #555;
-    margin-bottom: 20px;
-    line-height: 1.5;
+    color: #666;
+    margin-bottom: 22px;
+    line-height: 1.6;
   }
 
-  .question {
-    font-size: 1.15em;
-    color: #333;
-    font-weight: bold;
-    margin: 20px 0;
-    line-height: 1.5;
+  .message-box {
+    background: linear-gradient(135deg, #fff5f8 0%, #f0f4ff 100%);
+    border-radius: 18px;
+    padding: 22px 18px;
+    margin: 18px 0;
+    border: 2px dashed #ffb3cc;
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: #444;
+    text-align: left;
+    animation: fadeInUp 0.8s ease;
   }
 
-  .question .highlight {
-    background: linear-gradient(45deg, #f5576c, #f093fb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .message-box .emoji-line {
     font-size: 1.4em;
-    display: inline-block;
-    margin: 5px 0;
+    text-align: center;
+    display: block;
+    margin: 10px 0;
   }
 
   .btn-group {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 20px;
+    margin-top: 22px;
     align-items: center;
   }
 
@@ -137,25 +146,24 @@
     cursor: pointer;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     min-height: 54px;
-    min-width: 160px;
+    min-width: 180px;
     touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
     outline: none;
   }
 
   #mainBtn {
-    background: linear-gradient(45deg, #f5576c, #f093fb);
-    box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+    background: linear-gradient(45deg, #ff6b9d, #c471ed);
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.45);
   }
 
   #mainBtn:active {
     transform: scale(0.96);
-    box-shadow: 0 4px 10px rgba(245, 87, 108, 0.5);
+    box-shadow: 0 4px 10px rgba(255, 107, 157, 0.5);
   }
 
   #yesBtn {
     background: linear-gradient(45deg, #43e97b, #38f9d7);
-    box-shadow: 0 8px 20px rgba(67, 233, 123, 0.4);
+    box-shadow: 0 8px 20px rgba(67, 233, 123, 0.45);
   }
 
   #yesBtn:active {
@@ -164,8 +172,8 @@
   }
 
   #noBtn {
-    background: linear-gradient(45deg, #95a5a6, #7f8c8d);
-    box-shadow: 0 8px 20px rgba(149, 165, 166, 0.4);
+    background: linear-gradient(45deg, #ffa07a, #ff8c94);
+    box-shadow: 0 8px 20px rgba(255, 140, 148, 0.45);
     position: relative;
     transition: all 0.25s ease;
   }
@@ -177,16 +185,16 @@
   .hidden { display: none !important; }
 
   .final-message {
-    font-size: 1.05em;
-    line-height: 1.7;
-    color: #333;
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #444;
   }
 
   .final-message .big {
     font-size: 1.5em;
     display: block;
-    margin: 15px 0;
-    background: linear-gradient(45deg, #f5576c, #4facfe);
+    margin: 18px 0;
+    background: linear-gradient(45deg, #ff6b9d, #c471ed);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -194,24 +202,26 @@
     line-height: 1.3;
   }
 
-  .rainbow {
-    animation: rainbow 2s linear infinite;
-    font-weight: bold;
+  .typewriter {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 2px solid #ff6b9d;
+    white-space: nowrap;
+    animation: typing 2s steps(30) 1s forwards, blink 0.75s step-end infinite;
+    max-width: 0;
   }
 
-  @keyframes rainbow {
-    0% { color: #ff0000; }
-    16% { color: #ff9900; }
-    33% { color: #ffff00; }
-    50% { color: #00ff00; }
-    66% { color: #0099ff; }
-    83% { color: #9900ff; }
-    100% { color: #ff0000; }
+  @keyframes typing {
+    to { max-width: 100%; }
   }
 
-  /* ==== Hiệu ứng bay ==== */
+  @keyframes blink {
+    50% { border-color: transparent; }
+  }
+
+  /* ==== Hiệu ứng ==== */
   .emoji-float,
-  .money-rain,
+  .heart-float,
   .confetti {
     position: fixed;
     pointer-events: none;
@@ -229,14 +239,14 @@
     100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; }
   }
 
-  .money-rain {
+  .heart-float {
     font-size: 2.2em;
     top: -80px;
-    animation: moneyFall linear forwards;
+    animation: heartFall linear forwards;
   }
 
-  @keyframes moneyFall {
-    to { transform: translateY(110vh) rotate(360deg); }
+  @keyframes heartFall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
   }
 
   .confetti {
@@ -252,30 +262,27 @@
 
   /* ==== Tablet trở lên ==== */
   @media (min-width: 600px) {
-    .container { padding: 45px 50px; max-width: 550px; }
-    h1 { font-size: 2em; }
-    .gift { font-size: 6em; }
-    .question { font-size: 1.3em; }
+    .container { padding: 50px 55px; max-width: 580px; }
+    h1 { font-size: 2.1em; }
+    .heart { font-size: 6em; }
     p { font-size: 1.15em; }
+    .message-box { font-size: 1.15em; padding: 28px 24px; }
     .btn-group { flex-direction: row; justify-content: center; gap: 15px; }
     button { font-size: 1.1em; padding: 16px 35px; }
-    .final-message { font-size: 1.15em; }
-    .final-message .big { font-size: 1.7em; }
-    .emoji-float { font-size: 2.5em; }
-    .money-rain { font-size: 2.5em; }
+    .final-message { font-size: 1.2em; }
+    .final-message .big { font-size: 1.8em; }
   }
 
-  /* ==== Màn hình thấp (điện thoại nằm ngang) ==== */
+  /* ==== Màn hình ngang ==== */
   @media (max-height: 500px) and (orientation: landscape) {
-    .container { padding: 20px; max-width: 600px; }
-    h1 { font-size: 1.3em; margin-bottom: 8px; }
-    .gift { font-size: 3em; margin: 5px 0; }
-    p, .question { font-size: 0.95em; margin: 10px 0; }
-    .btn-group { flex-direction: row; gap: 10px; margin-top: 10px; }
+    .container { padding: 20px; max-width: 650px; }
+    h1 { font-size: 1.35em; margin-bottom: 10px; }
+    .heart { font-size: 3em; margin: 5px 0; }
+    p, .message-box { font-size: 0.95em; margin: 10px 0; }
+    .btn-group { flex-direction: row; gap: 10px; margin-top: 12px; }
     button { min-height: 44px; padding: 10px 20px; font-size: 0.95em; }
   }
 
-  /* ==== Giảm animation cho máy yếu ==== */
   @media (prefers-reduced-motion: reduce) {
     * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
@@ -286,24 +293,31 @@
 <div class="container">
   <!-- Bước 1 -->
   <div id="step1">
-    <h1>🎁 Quà Tặng Đặc Biệt!</h1>
-    <div class="gift" id="giftIcon">🎁</div>
-    <p>Nhấn vào hộp quà để xem điều bất ngờ nha! 😉</p>
+    <h1>💌 Có Điều Muốn Nói Với Bạn...</h1>
+    <div class="heart" id="heartIcon">💗</div>
+    <p>Nhấn vào trái tim để đọc tin nhắn nha 🥺</p>
     <div class="btn-group">
-      <button id="mainBtn" onclick="openGift()">Mở Quà Ngay</button>
+      <button id="mainBtn" onclick="openLetter()">Mở Thư 💌</button>
     </div>
   </div>
 
   <!-- Bước 2 -->
   <div id="step2" class="hidden">
-    <h1>💰 Câu Hỏi Triệu Đô</h1>
-    <p class="question">
-      Bạn có muốn tui tặng<br>
-      <span class="highlight">1 TỶ ĐỒNG</span> 💵 không?
+    <h1>🥺 Lời Xin Lỗi Chân Thành</h1>
+    <div class="message-box">
+      <span class="emoji-line">🌸 💕 🌸</span>
+      Xin lỗi bạn vì đã trêu hơi quá đà nha! 🙏<br><br>
+      Tui biết là trò troll đó có thể làm bạn hơi khó chịu, nhưng mà tui chỉ muốn chúng ta có chút niềm vui thôi... 😅<br><br>
+      Bạn mà giận là tui buồn lắm đó 🥺<br>
+      Nên là... cho tui chuộc lỗi nha? 💖
+      <span class="emoji-line">🌸 💕 🌸</span>
+    </div>
+    <p style="font-size:1.1em; color:#ff6b9d; font-weight:bold;">
+      Bạn tha lỗi cho tui hong? 🥺
     </p>
     <div class="btn-group">
-      <button id="yesBtn" onclick="sayYes()">CÓ, MUỐN! 🤑</button>
-      <button id="noBtn">KHÔNG CẦN 💸</button>
+      <button id="yesBtn" onclick="sayYes()">Tha Lỗi Cho Bạn ❤️</button>
+      <button id="noBtn">Vẫn Còn Giận 😤</button>
     </div>
   </div>
 
@@ -311,7 +325,7 @@
   <div id="step3" class="hidden">
     <div class="final-message" id="finalMsg"></div>
     <div class="btn-group">
-      <button id="mainBtn" onclick="location.reload()">🔄 Chơi Lại</button>
+      <button id="mainBtn" onclick="location.reload()">🔄 Đọc Lại Từ Đầu</button>
     </div>
   </div>
 </div>
@@ -320,10 +334,8 @@
 (function() {
   'use strict';
 
-  // ===== Phát hiện thiết bị =====
   const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
                    ('ontouchstart' in window && window.innerWidth < 1024);
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
   // ===== Web Audio =====
   let audioCtx = null;
@@ -341,12 +353,10 @@
     return audioCtx;
   }
 
-  // Unlock audio lần chạm đầu tiên (bắt buộc cho iOS/Android)
   function unlockAudio() {
     if (audioUnlocked) return;
     const ctx = initAudio();
     if (!ctx) return;
-    // Phát 1 âm thanh câm để mở khóa
     try {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
@@ -363,7 +373,7 @@
     document.addEventListener(evt, unlockAudio, { once: true, passive: true });
   });
 
-  function playTone(freq, duration = 0.15, type = 'sine', vol = 0.15) {
+  function playTone(freq, duration = 0.15, type = 'sine', vol = 0.12) {
     const ctx = initAudio();
     if (!ctx) return;
     try {
@@ -380,18 +390,22 @@
     } catch (e) {}
   }
 
-  function playVictory() {
-    [523, 659, 784, 1047].forEach((f, i) =>
-      setTimeout(() => playTone(f, 0.2), i * 120)
+  // Nhạc nhẹ nhàng dễ thương
+  function playSweetMelody() {
+    const notes = [523, 587, 659, 784, 880, 784, 659, 587];
+    notes.forEach((f, i) => setTimeout(() => playTone(f, 0.3, 'sine', 0.1), i * 200));
+  }
+
+  function playHappyChord() {
+    [523, 659, 784, 1047].forEach((f, i) => 
+      setTimeout(() => playTone(f, 0.5, 'sine', 0.08), i * 80)
     );
   }
 
-  function playCoin() {
-    playTone(988, 0.08, 'square', 0.12);
-    setTimeout(() => playTone(1319, 0.15, 'square', 0.12), 80);
+  function playSoftDing() {
+    playTone(880, 0.4, 'sine', 0.1);
   }
 
-  // ===== Rung (nếu hỗ trợ) =====
   function vibrate(pattern) {
     if (navigator.vibrate) {
       try { navigator.vibrate(pattern); } catch (e) {}
@@ -404,38 +418,34 @@
       const el = document.getElementById(s);
       if (el) el.classList.toggle('hidden', s !== id);
     });
-    // Cuộn lên đầu container
     const c = document.querySelector('.container');
     if (c) c.scrollTop = 0;
   }
 
-  // ===== Bước 1: Mở quà =====
-  window.openGift = function() {
+  // ===== Bước 1: Mở thư =====
+  window.openLetter = function() {
     unlockAudio();
     vibrate(30);
     showStep('step2');
-    burstEmojis(['🎊', '🎉', '✨', '🎈', '💖'], isMobile ? 20 : 35);
-    playVictory();
+    burstEmojis(['💖', '🌸', '✨', '💕', '🌷'], isMobile ? 25 : 40);
+    playSweetMelody();
   };
 
-  // ===== Bước 2: Nút KHÔNG chạy trốn =====
+  // ===== Bước 2: Nút "Vẫn Còn Giận" =====
   let noCount = 0;
   const noTexts = [
-    'KHÔNG CẦN 💸',
-    'Chắc chưa? 🤨',
-    '1 tỷ đó nghen! 😱',
-    'Tiền đó bạn ơi! 💰',
-    'Đừng từ chối 😢',
-    'Suy nghĩ lại đi! 🥺',
-    '1 tỷ = 1000 triệu đó 😳',
-    'Mua được biệt thự luôn 🏰',
-    'Mua được siêu xe 🏎️',
-    'Nút này bị lỗi rồi 🤪',
-    'Bấm CÓ đi mà 🙏',
-    'Không cho bấm nữa 😤',
-    'Chạy đâu cho thoát 🏃',
-    'Bắt được rồi nè 😏',
-    'Từ chối 1 tỷ = điên 🤣'
+    'Vẫn Còn Giận 😤',
+    'Hơi hơi... 😒',
+    'Chưa nguôi 😔',
+    'Tại bạn á! 😣',
+    'Buồn lắm đó 🥺',
+    'Suy nghĩ thêm... 🤔',
+    'Thôi được rồi... 😌',
+    'Bớt giận xíu 😊',
+    'Hmm... 🤨',
+    'Thấy tội nghiệp rồi 😅',
+    'Được, tha đó 😇',
+    'Không giận nữa đâu 💕'
   ];
 
   function handleNo() {
@@ -445,39 +455,35 @@
     noCount++;
     unlockAudio();
     vibrate([20, 30, 20]);
+    playSoftDing();
 
     btn.textContent = noTexts[Math.min(noCount, noTexts.length - 1)];
 
-    const scale = Math.max(0.35, 1 - noCount * 0.05);
+    const scale = Math.max(0.5, 1 - noCount * 0.04);
 
     if (!isMobile && window.innerWidth > 900) {
-      // PC: cho nút nhảy vị trí
-      const x = (Math.random() - 0.5) * 350;
-      const y = (Math.random() - 0.5) * 250;
+      const x = (Math.random() - 0.5) * 150;
+      const y = (Math.random() - 0.5) * 100;
       btn.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
     } else {
-      // Mobile/tablet: chỉ thu nhỏ, giữ nguyên layout
       btn.style.transform = `scale(${scale})`;
     }
 
-    playTone(200 + Math.random() * 300, 0.1, 'square', 0.12);
-
-    if (noCount > 12) {
+    // Sau 8 lần tự động "tha lỗi"
+    if (noCount > 8) {
       btn.disabled = true;
-      btn.textContent = 'Thoát không được đâu 😂';
-      setTimeout(sayYes, 400);
+      btn.textContent = 'Thôi tha cho bạn đó 💖';
+      setTimeout(sayYes, 500);
     }
   }
 
   const noBtn = document.getElementById('noBtn');
   if (noBtn) {
-    // Mobile: dùng touchstart để tránh delay 300ms
     noBtn.addEventListener('touchstart', function(e) {
       e.preventDefault();
       handleNo();
     }, { passive: false });
 
-    // PC: dùng mouseover + click
     noBtn.addEventListener('mouseover', function() {
       if (!isMobile) handleNo();
     });
@@ -488,7 +494,7 @@
     });
   }
 
-  // ===== Bước 3: Nói CÓ =====
+  // ===== Bước 3: Tha lỗi =====
   window.sayYes = function() {
     unlockAudio();
     vibrate([50, 30, 50, 30, 100]);
@@ -497,32 +503,36 @@
     const finalMsg = document.getElementById('finalMsg');
     if (finalMsg) {
       finalMsg.innerHTML =
-        'Chúc mừng bạn đã chọn <b>"CÓ"</b>! 🎉<br>' +
-        'Vậy thì... tui sẽ tặng bạn...' +
-        '<br><span class="big rainbow">🎉 1 TỶ... LỜI CHÚC! 🎉</span>' +
-        '<span style="color:#e74c3c; font-weight:bold; font-size:1.05em; display:block; margin-top:10px;">' +
-        '😜 BẠN ĐÃ BỊ LỪA RỒI! 😜</span>' +
-        '<br>💵 Tiền thì không có...<br>' +
-        '🤑 Nhưng có nguyên <b>1 tỷ niềm vui</b> gửi tới bạn!<br>' +
-        '<br>Chúc bạn ngày càng <b>giàu</b>, <b>đẹp</b>, <b>may mắn</b> và <b>thành công</b>! ❤️' +
-        '<br><br><i>— Từ người bạn đáng yêu của bạn 😘</i>';
+        '<span style="font-size:1.4em;">💖 Cảm Ơn Bạn Nhiều Lắm! 💖</span>' +
+        '<br><br>' +
+        'Cảm ơn bạn đã tha lỗi cho tui nha! 🥰<br>' +
+        'Từ nay tui hứa sẽ <b>không troll</b> bạn nữa...<br>' +
+        '<i style="color:#999; font-size:0.9em;">(chắc vậy 😅)</i>' +
+        '<br><br>' +
+        '<span class="big">🌸 Bạn Là Người Bạn Tuyệt Vời Nhất! 🌸</span>' +
+        '<br>' +
+        'Chúc bạn luôn <b>vui vẻ</b>, <b>bình an</b> và <b>gặp nhiều may mắn</b>! ✨' +
+        '<br><br>' +
+        '<span style="color:#ff6b9d; font-weight:bold;">💌 Tình bạn của chúng ta mãi đẹp nha! 💌</span>' +
+        '<br><br>' +
+        '<i style="color:#888;">— Từ đứa bạn hơi lầy nhưng mà thương bạn 😘</i>';
     }
 
-    burstEmojis(['🎉', '🎊', '💖', '✨', '🌟', '🎈', '🥳', '💝'], isMobile ? 30 : 55);
-    createConfetti(isMobile ? 50 : 90);
-    createMoneyRain(isMobile ? 25 : 45);
+    // Hiệu ứng ngọt ngào
+    burstEmojis(['💖', '💕', '🌸', '✨', '🌷', '💝', '🥰', '🌺'], isMobile ? 40 : 65);
+    createConfetti(isMobile ? 40 : 70);
+    createHeartRain(isMobile ? 30 : 55);
 
-    playVictory();
+    playHappyChord();
     setTimeout(() => {
-      for (let i = 0; i < 6; i++) setTimeout(playCoin, i * 150);
-    }, 400);
+      playSweetMelody();
+    }, 600);
   };
 
   // ===== Emoji bay =====
   const activeEffects = new Set();
 
   function burstEmojis(emojis, count) {
-    // Giới hạn số hiệu ứng đồng thời để không lag
     if (activeEffects.size > 200) return;
 
     for (let i = 0; i < count; i++) {
@@ -540,13 +550,13 @@
           el.remove();
           activeEffects.delete(el);
         }, 5500);
-      }, i * 60);
+      }, i * 70);
     }
   }
 
   // ===== Confetti =====
   function createConfetti(count) {
-    const colors = ['#f5576c', '#4facfe', '#f093fb', '#43e97b', '#fa709a', '#fee140'];
+    const colors = ['#ff6b9d', '#c471ed', '#f64f59', '#43e97b', '#fee140', '#4facfe'];
     for (let i = 0; i < count; i++) {
       setTimeout(() => {
         const c = document.createElement('div');
@@ -560,37 +570,38 @@
         c.style.animationDuration = (2 + Math.random() * 2) + 's';
         document.body.appendChild(c);
         setTimeout(() => c.remove(), 5000);
-      }, i * 30);
+      }, i * 35);
     }
   }
 
-  // ===== Mưa tiền =====
-  function createMoneyRain(count) {
-    const moneyEmojis = ['💵', '💰', '💸', '🤑', '💴', '💶', '💷', '🪙'];
+  // ===== Mưa tim =====
+  function createHeartRain(count) {
+    const hearts = ['💖', '💕', '💗', '💓', '💝', '❤️', '🌸', '🌷'];
     for (let i = 0; i < count; i++) {
       setTimeout(() => {
-        const m = document.createElement('div');
-        m.className = 'money-rain';
-        m.textContent = moneyEmojis[Math.floor(Math.random() * moneyEmojis.length)];
-        m.style.left = Math.random() * 100 + 'vw';
-        m.style.animationDuration = (3 + Math.random() * 2) + 's';
-        document.body.appendChild(m);
-        setTimeout(() => m.remove(), 6000);
-      }, i * 80);
+        const h = document.createElement('div');
+        h.className = 'heart-float';
+        h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        h.style.left = Math.random() * 100 + 'vw';
+        h.style.animationDuration = (3 + Math.random() * 2.5) + 's';
+        h.style.fontSize = (1.5 + Math.random() * 1.5) + 'em';
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 6000);
+      }, i * 100);
     }
   }
 
-  // ===== Click hộp quà =====
-  const giftIcon = document.getElementById('giftIcon');
-  if (giftIcon) {
-    giftIcon.addEventListener('click', window.openGift);
-    giftIcon.addEventListener('touchstart', function(e) {
+  // ===== Click trái tim =====
+  const heartIcon = document.getElementById('heartIcon');
+  if (heartIcon) {
+    heartIcon.addEventListener('click', window.openLetter);
+    heartIcon.addEventListener('touchstart', function(e) {
       e.preventDefault();
-      window.openGift();
+      window.openLetter();
     }, { passive: false });
   }
 
-  // ===== Chặn zoom double-tap trên iOS =====
+  // ===== Chặn zoom double-tap =====
   let lastTouchEnd = 0;
   document.addEventListener('touchend', function(e) {
     const now = Date.now();
