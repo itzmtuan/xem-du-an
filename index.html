@@ -2,34 +2,57 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#764ba2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <title>🎁 Quà Tặng Đặc Biệt Cho Bạn</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+  }
+
   body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    padding: max(15px, env(safe-area-inset-top)) 15px max(15px, env(safe-area-inset-bottom));
     position: relative;
-    padding: 20px;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
   .container {
     text-align: center;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 50px 60px;
-    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.97);
+    padding: 30px 25px;
+    border-radius: 24px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     position: relative;
     z-index: 10;
     animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    max-width: 90vw;
-    width: 600px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 95vh;
+    max-height: 95dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   @keyframes popIn {
@@ -38,14 +61,15 @@
   }
 
   h1 {
-    font-size: 2.2em;
+    font-size: 1.6em;
     background: linear-gradient(45deg, #f093fb, #f5576c, #4facfe);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     animation: gradientShift 3s ease infinite;
+    line-height: 1.3;
   }
 
   @keyframes gradientShift {
@@ -54,32 +78,33 @@
   }
 
   .gift {
-    font-size: 6em;
-    margin: 20px 0;
+    font-size: 5em;
+    margin: 10px 0;
     display: inline-block;
-    animation: shake 1s infinite;
+    animation: shake 1.2s infinite;
     cursor: pointer;
     user-select: none;
+    -webkit-user-select: none;
   }
 
   @keyframes shake {
     0%, 100% { transform: rotate(0deg) scale(1); }
-    25% { transform: rotate(-10deg) scale(1.1); }
-    75% { transform: rotate(10deg) scale(1.1); }
+    25% { transform: rotate(-10deg) scale(1.08); }
+    75% { transform: rotate(10deg) scale(1.08); }
   }
 
   p {
-    font-size: 1.2em;
+    font-size: 1.05em;
     color: #555;
-    margin-bottom: 25px;
-    line-height: 1.6;
+    margin-bottom: 20px;
+    line-height: 1.5;
   }
 
   .question {
-    font-size: 1.4em;
+    font-size: 1.15em;
     color: #333;
     font-weight: bold;
-    margin: 30px 0;
+    margin: 20px 0;
     line-height: 1.5;
   }
 
@@ -87,101 +112,86 @@
     background: linear-gradient(45deg, #f5576c, #f093fb);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 1.3em;
+    background-clip: text;
+    font-size: 1.4em;
+    display: inline-block;
+    margin: 5px 0;
+  }
+
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+    align-items: center;
   }
 
   button {
-    font-size: 1.2em;
-    padding: 15px 40px;
+    font-family: inherit;
+    font-size: 1.05em;
+    padding: 15px 30px;
     border: none;
     border-radius: 50px;
-    background: linear-gradient(45deg, #f5576c, #f093fb);
     color: white;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 10px 20px rgba(245, 87, 108, 0.4);
-    transition: all 0.3s;
-    margin: 8px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    min-height: 54px;
+    min-width: 160px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
   }
 
-  button:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(245, 87, 108, 0.6);
+  #mainBtn {
+    background: linear-gradient(45deg, #f5576c, #f093fb);
+    box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
   }
 
-  button:active { transform: translateY(0); }
+  #mainBtn:active {
+    transform: scale(0.96);
+    box-shadow: 0 4px 10px rgba(245, 87, 108, 0.5);
+  }
 
   #yesBtn {
     background: linear-gradient(45deg, #43e97b, #38f9d7);
-    box-shadow: 0 10px 20px rgba(67, 233, 123, 0.4);
+    box-shadow: 0 8px 20px rgba(67, 233, 123, 0.4);
   }
 
-  #yesBtn:hover {
-    box-shadow: 0 15px 30px rgba(67, 233, 123, 0.6);
+  #yesBtn:active {
+    transform: scale(0.96);
+    box-shadow: 0 4px 10px rgba(67, 233, 123, 0.5);
   }
 
   #noBtn {
     background: linear-gradient(45deg, #95a5a6, #7f8c8d);
-    box-shadow: 0 10px 20px rgba(149, 165, 166, 0.4);
+    box-shadow: 0 8px 20px rgba(149, 165, 166, 0.4);
     position: relative;
-    transition: all 0.25s;
+    transition: all 0.25s ease;
   }
 
-  .emoji-float {
-    position: fixed;
-    font-size: 2.5em;
-    pointer-events: none;
-    animation: floatUp 4s linear forwards;
-    z-index: 9999;
-  }
-
-  @keyframes floatUp {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; }
-  }
-
-  .confetti {
-    position: fixed;
-    width: 12px;
-    height: 12px;
-    top: -20px;
-    z-index: 9998;
-    animation: fall linear forwards;
-  }
-
-  @keyframes fall {
-    to { transform: translateY(110vh) rotate(720deg); }
-  }
-
-  .money-rain {
-    position: fixed;
-    top: -80px;
-    font-size: 3em;
-    z-index: 9997;
-    pointer-events: none;
-    animation: moneyFall linear forwards;
-  }
-
-  @keyframes moneyFall {
-    to { transform: translateY(110vh) rotate(360deg); }
+  #noBtn:active {
+    transform: scale(0.96);
   }
 
   .hidden { display: none !important; }
 
   .final-message {
-    font-size: 1.3em;
-    line-height: 1.8;
+    font-size: 1.05em;
+    line-height: 1.7;
     color: #333;
   }
 
   .final-message .big {
-    font-size: 1.8em;
+    font-size: 1.5em;
     display: block;
-    margin: 20px 0;
+    margin: 15px 0;
     background: linear-gradient(45deg, #f5576c, #4facfe);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: bold;
+    line-height: 1.3;
   }
 
   .rainbow {
@@ -199,83 +209,214 @@
     100% { color: #ff0000; }
   }
 
-  @media (max-width: 500px) {
-    .container { padding: 35px 25px; }
-    h1 { font-size: 1.6em; }
-    .gift { font-size: 4em; }
-    .question { font-size: 1.1em; }
-    button { font-size: 1em; padding: 12px 25px; }
-    .final-message { font-size: 1.05em; }
+  /* ==== Hiệu ứng bay ==== */
+  .emoji-float,
+  .money-rain,
+  .confetti {
+    position: fixed;
+    pointer-events: none;
+    will-change: transform, opacity;
+    z-index: 9999;
+  }
+
+  .emoji-float {
+    font-size: 2em;
+    animation: floatUp 4s linear forwards;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; }
+  }
+
+  .money-rain {
+    font-size: 2.2em;
+    top: -80px;
+    animation: moneyFall linear forwards;
+  }
+
+  @keyframes moneyFall {
+    to { transform: translateY(110vh) rotate(360deg); }
+  }
+
+  .confetti {
+    width: 10px;
+    height: 10px;
+    top: -20px;
+    animation: fall linear forwards;
+  }
+
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(720deg); }
+  }
+
+  /* ==== Tablet trở lên ==== */
+  @media (min-width: 600px) {
+    .container { padding: 45px 50px; max-width: 550px; }
+    h1 { font-size: 2em; }
+    .gift { font-size: 6em; }
+    .question { font-size: 1.3em; }
+    p { font-size: 1.15em; }
+    .btn-group { flex-direction: row; justify-content: center; gap: 15px; }
+    button { font-size: 1.1em; padding: 16px 35px; }
+    .final-message { font-size: 1.15em; }
+    .final-message .big { font-size: 1.7em; }
+    .emoji-float { font-size: 2.5em; }
+    .money-rain { font-size: 2.5em; }
+  }
+
+  /* ==== Màn hình thấp (điện thoại nằm ngang) ==== */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .container { padding: 20px; max-width: 600px; }
+    h1 { font-size: 1.3em; margin-bottom: 8px; }
+    .gift { font-size: 3em; margin: 5px 0; }
+    p, .question { font-size: 0.95em; margin: 10px 0; }
+    .btn-group { flex-direction: row; gap: 10px; margin-top: 10px; }
+    button { min-height: 44px; padding: 10px 20px; font-size: 0.95em; }
+  }
+
+  /* ==== Giảm animation cho máy yếu ==== */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
 </style>
 </head>
 <body>
 
 <div class="container">
-  <!-- Bước 1: Mời nhận quà -->
+  <!-- Bước 1 -->
   <div id="step1">
     <h1>🎁 Quà Tặng Đặc Biệt!</h1>
     <div class="gift" id="giftIcon">🎁</div>
     <p>Nhấn vào hộp quà để xem điều bất ngờ nha! 😉</p>
-    <button onclick="openGift()">Mở Quà Ngay</button>
+    <div class="btn-group">
+      <button id="mainBtn" onclick="openGift()">Mở Quà Ngay</button>
+    </div>
   </div>
 
-  <!-- Bước 2: Câu hỏi yes/no -->
+  <!-- Bước 2 -->
   <div id="step2" class="hidden">
     <h1>💰 Câu Hỏi Triệu Đô</h1>
     <p class="question">
       Bạn có muốn tui tặng<br>
       <span class="highlight">1 TỶ ĐỒNG</span> 💵 không?
     </p>
-    <div style="margin-top:20px;">
+    <div class="btn-group">
       <button id="yesBtn" onclick="sayYes()">CÓ, MUỐN! 🤑</button>
-      <button id="noBtn" onmouseover="runAway()" onclick="runAway()">KHÔNG CẦN 💸</button>
+      <button id="noBtn">KHÔNG CẦN 💸</button>
     </div>
   </div>
 
-  <!-- Bước 3: Kết quả -->
+  <!-- Bước 3 -->
   <div id="step3" class="hidden">
     <div class="final-message" id="finalMsg"></div>
-    <button onclick="location.reload()" style="margin-top:30px;">🔄 Chơi Lại</button>
+    <div class="btn-group">
+      <button id="mainBtn" onclick="location.reload()">🔄 Chơi Lại</button>
+    </div>
   </div>
 </div>
 
 <script>
-  // ===== Âm thanh bằng Web Audio API =====
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  
-  function playTone(freq, duration = 0.15, type = 'sine') {
+(function() {
+  'use strict';
+
+  // ===== Phát hiện thiết bị =====
+  const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+                   ('ontouchstart' in window && window.innerWidth < 1024);
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+  // ===== Web Audio =====
+  let audioCtx = null;
+  let audioUnlocked = false;
+
+  function initAudio() {
+    if (!audioCtx) {
+      try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      } catch (e) { return null; }
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume().catch(() => {});
+    }
+    return audioCtx;
+  }
+
+  // Unlock audio lần chạm đầu tiên (bắt buộc cho iOS/Android)
+  function unlockAudio() {
+    if (audioUnlocked) return;
+    const ctx = initAudio();
+    if (!ctx) return;
+    // Phát 1 âm thanh câm để mở khóa
     try {
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      gain.gain.value = 0.0001;
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.01);
+      audioUnlocked = true;
+    } catch (e) {}
+  }
+
+  ['touchstart', 'touchend', 'click', 'keydown'].forEach(evt => {
+    document.addEventListener(evt, unlockAudio, { once: true, passive: true });
+  });
+
+  function playTone(freq, duration = 0.15, type = 'sine', vol = 0.15) {
+    const ctx = initAudio();
+    if (!ctx) return;
+    try {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
       osc.type = type;
       osc.frequency.value = freq;
       osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+      gain.connect(ctx.destination);
+      gain.gain.setValueAtTime(vol, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
       osc.start();
-      osc.stop(audioCtx.currentTime + duration);
-    } catch(e) {}
+      osc.stop(ctx.currentTime + duration);
+    } catch (e) {}
   }
 
   function playVictory() {
-    const notes = [523, 659, 784, 1047];
-    notes.forEach((f, i) => setTimeout(() => playTone(f, 0.2), i * 120));
+    [523, 659, 784, 1047].forEach((f, i) =>
+      setTimeout(() => playTone(f, 0.2), i * 120)
+    );
   }
 
-  function playCoinSound() {
-    playTone(988, 0.08, 'square');
-    setTimeout(() => playTone(1319, 0.15, 'square'), 80);
+  function playCoin() {
+    playTone(988, 0.08, 'square', 0.12);
+    setTimeout(() => playTone(1319, 0.15, 'square', 0.12), 80);
+  }
+
+  // ===== Rung (nếu hỗ trợ) =====
+  function vibrate(pattern) {
+    if (navigator.vibrate) {
+      try { navigator.vibrate(pattern); } catch (e) {}
+    }
+  }
+
+  // ===== Chuyển bước =====
+  function showStep(id) {
+    ['step1', 'step2', 'step3'].forEach(s => {
+      const el = document.getElementById(s);
+      if (el) el.classList.toggle('hidden', s !== id);
+    });
+    // Cuộn lên đầu container
+    const c = document.querySelector('.container');
+    if (c) c.scrollTop = 0;
   }
 
   // ===== Bước 1: Mở quà =====
-  function openGift() {
-    document.getElementById('step1').classList.add('hidden');
-    document.getElementById('step2').classList.remove('hidden');
-    burstEmojis(['🎊', '🎉', '✨', '🎈', '💖'], 30);
+  window.openGift = function() {
+    unlockAudio();
+    vibrate(30);
+    showStep('step2');
+    burstEmojis(['🎊', '🎉', '✨', '🎈', '💖'], isMobile ? 20 : 35);
     playVictory();
-  }
+  };
 
   // ===== Bước 2: Nút KHÔNG chạy trốn =====
   let noCount = 0;
@@ -297,62 +438,93 @@
     'Từ chối 1 tỷ = điên 🤣'
   ];
 
-  function runAway() {
+  function handleNo() {
     const btn = document.getElementById('noBtn');
+    if (!btn || btn.disabled) return;
+
     noCount++;
-    
+    unlockAudio();
+    vibrate([20, 30, 20]);
+
     btn.textContent = noTexts[Math.min(noCount, noTexts.length - 1)];
-    
-    const scale = Math.max(0.2, 1 - noCount * 0.06);
-    btn.style.transform = `scale(${scale})`;
-    
-    if (window.innerWidth > 768) {
-      const x = (Math.random() - 0.5) * 400;
-      const y = (Math.random() - 0.5) * 300;
+
+    const scale = Math.max(0.35, 1 - noCount * 0.05);
+
+    if (!isMobile && window.innerWidth > 900) {
+      // PC: cho nút nhảy vị trí
+      const x = (Math.random() - 0.5) * 350;
+      const y = (Math.random() - 0.5) * 250;
       btn.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+    } else {
+      // Mobile/tablet: chỉ thu nhỏ, giữ nguyên layout
+      btn.style.transform = `scale(${scale})`;
     }
-    
-    playTone(200 + Math.random() * 300, 0.1, 'square');
-    
+
+    playTone(200 + Math.random() * 300, 0.1, 'square', 0.12);
+
     if (noCount > 12) {
       btn.disabled = true;
       btn.textContent = 'Thoát không được đâu 😂';
-      sayYes();
+      setTimeout(sayYes, 400);
     }
   }
 
-  // ===== Bước 3: Nói CÓ =====
-  function sayYes() {
-    document.getElementById('step2').classList.add('hidden');
-    document.getElementById('step3').classList.remove('hidden');
-    
-    document.getElementById('finalMsg').innerHTML = 
-      'Chúc mừng bạn đã chọn <b>"CÓ"</b>! 🎉<br>' +
-      'Vậy thì... tui sẽ tặng bạn...' +
-      '<br><span class="big rainbow">🎉 1 TỶ... LỜI CHÚC! 🎉</span>' +
-      '<br><span style="color:#e74c3c; font-weight:bold; font-size:1.1em;">' +
-      '😜 BẠN ĐÃ BỊ LỪA RỒI! 😜</span>' +
-      '<br><br>💵 Tiền thì không có...<br>' +
-      '🤑 Nhưng mà có nguyên <b>1 tỷ niềm vui</b> gửi tới bạn!<br>' +
-      '<br>Chúc bạn ngày càng <b>giàu</b>, <b>đẹp</b>, <b>may mắn</b> và <b>thành công</b>! ❤️<br>' +
-      '<br><i>— Từ người bạn đáng yêu của bạn 😘</i>';
-    
-    // Mưa tiền + pháo hoa
-    burstEmojis(['🎉', '🎊', '💖', '✨', '🌟', '🎈', '🥳', '💝'], 50);
-    createConfetti(80);
-    createMoneyRain(40);
-    playVictory();
-    
-    // Tiếng xu vàng leng keng
-    setTimeout(() => {
-      for (let i = 0; i < 8; i++) {
-        setTimeout(playCoinSound, i * 150);
-      }
-    }, 400);
+  const noBtn = document.getElementById('noBtn');
+  if (noBtn) {
+    // Mobile: dùng touchstart để tránh delay 300ms
+    noBtn.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      handleNo();
+    }, { passive: false });
+
+    // PC: dùng mouseover + click
+    noBtn.addEventListener('mouseover', function() {
+      if (!isMobile) handleNo();
+    });
+    noBtn.addEventListener('click', function(e) {
+      if (isMobile) return;
+      e.preventDefault();
+      handleNo();
+    });
   }
 
-  // ===== Hiệu ứng emoji bay =====
+  // ===== Bước 3: Nói CÓ =====
+  window.sayYes = function() {
+    unlockAudio();
+    vibrate([50, 30, 50, 30, 100]);
+    showStep('step3');
+
+    const finalMsg = document.getElementById('finalMsg');
+    if (finalMsg) {
+      finalMsg.innerHTML =
+        'Chúc mừng bạn đã chọn <b>"CÓ"</b>! 🎉<br>' +
+        'Vậy thì... tui sẽ tặng bạn...' +
+        '<br><span class="big rainbow">🎉 1 TỶ... LỜI CHÚC! 🎉</span>' +
+        '<span style="color:#e74c3c; font-weight:bold; font-size:1.05em; display:block; margin-top:10px;">' +
+        '😜 BẠN ĐÃ BỊ LỪA RỒI! 😜</span>' +
+        '<br>💵 Tiền thì không có...<br>' +
+        '🤑 Nhưng có nguyên <b>1 tỷ niềm vui</b> gửi tới bạn!<br>' +
+        '<br>Chúc bạn ngày càng <b>giàu</b>, <b>đẹp</b>, <b>may mắn</b> và <b>thành công</b>! ❤️' +
+        '<br><br><i>— Từ người bạn đáng yêu của bạn 😘</i>';
+    }
+
+    burstEmojis(['🎉', '🎊', '💖', '✨', '🌟', '🎈', '🥳', '💝'], isMobile ? 30 : 55);
+    createConfetti(isMobile ? 50 : 90);
+    createMoneyRain(isMobile ? 25 : 45);
+
+    playVictory();
+    setTimeout(() => {
+      for (let i = 0; i < 6; i++) setTimeout(playCoin, i * 150);
+    }, 400);
+  };
+
+  // ===== Emoji bay =====
+  const activeEffects = new Set();
+
   function burstEmojis(emojis, count) {
+    // Giới hạn số hiệu ứng đồng thời để không lag
+    if (activeEffects.size > 200) return;
+
     for (let i = 0; i < count; i++) {
       setTimeout(() => {
         const el = document.createElement('div');
@@ -360,10 +532,14 @@
         el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
         el.style.left = Math.random() * 100 + 'vw';
         el.style.bottom = '-50px';
-        el.style.fontSize = (1.5 + Math.random() * 2) + 'em';
+        el.style.fontSize = (1.2 + Math.random() * 1.5) + 'em';
         el.style.animationDuration = (3 + Math.random() * 2) + 's';
         document.body.appendChild(el);
-        setTimeout(() => el.remove(), 6000);
+        activeEffects.add(el);
+        setTimeout(() => {
+          el.remove();
+          activeEffects.delete(el);
+        }, 5500);
       }, i * 60);
     }
   }
@@ -378,8 +554,9 @@
         c.style.left = Math.random() * 100 + 'vw';
         c.style.background = colors[Math.floor(Math.random() * colors.length)];
         c.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-        c.style.width = (8 + Math.random() * 8) + 'px';
-        c.style.height = c.style.width;
+        const size = 6 + Math.random() * 8;
+        c.style.width = size + 'px';
+        c.style.height = size + 'px';
         c.style.animationDuration = (2 + Math.random() * 2) + 's';
         document.body.appendChild(c);
         setTimeout(() => c.remove(), 5000);
@@ -387,7 +564,7 @@
     }
   }
 
-  // ===== Mưa tiền 💵 =====
+  // ===== Mưa tiền =====
   function createMoneyRain(count) {
     const moneyEmojis = ['💵', '💰', '💸', '🤑', '💴', '💶', '💷', '🪙'];
     for (let i = 0; i < count; i++) {
@@ -404,7 +581,30 @@
   }
 
   // ===== Click hộp quà =====
-  document.getElementById('giftIcon').addEventListener('click', openGift);
+  const giftIcon = document.getElementById('giftIcon');
+  if (giftIcon) {
+    giftIcon.addEventListener('click', window.openGift);
+    giftIcon.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      window.openGift();
+    }, { passive: false });
+  }
+
+  // ===== Chặn zoom double-tap trên iOS =====
+  let lastTouchEnd = 0;
+  document.addEventListener('touchend', function(e) {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) e.preventDefault();
+    lastTouchEnd = now;
+  }, { passive: false });
+
+  // ===== Chặn scroll bounce =====
+  document.addEventListener('touchmove', function(e) {
+    if (e.target.closest('.container')) return;
+    e.preventDefault();
+  }, { passive: false });
+
+})();
 </script>
 </body>
 </html>
