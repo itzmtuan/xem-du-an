@@ -1,110 +1,355 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>💕 Ngân Hàng Tình Yêu</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎁 Quà Tặng Đặc Biệt Cho Bạn</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 50px 60px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 10;
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    max-width: 90vw;
+  }
+
+  @keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  h1 {
+    font-size: 2.5em;
+    background: linear-gradient(45deg, #f093fb, #f5576c, #4facfe);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .gift {
+    font-size: 6em;
+    margin: 20px 0;
+    display: inline-block;
+    animation: shake 1s infinite;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-10deg) scale(1.1); }
+    75% { transform: rotate(10deg) scale(1.1); }
+  }
+
+  p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.6;
+  }
+
+  button {
+    font-size: 1.2em;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(45deg, #f5576c, #f093fb);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(245, 87, 108, 0.4);
+    transition: all 0.3s;
+    margin: 5px;
+  }
+
+  button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(245, 87, 108, 0.6);
+  }
+
+  button:active { transform: translateY(0); }
+
+  #noBtn {
+    background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+    box-shadow: 0 10px 20px rgba(149, 165, 166, 0.4);
+    position: relative;
+    transition: all 0.2s;
+  }
+
+  /* Emoji bay lên */
+  .emoji-float {
+    position: fixed;
+    font-size: 2.5em;
+    pointer-events: none;
+    animation: floatUp 4s linear forwards;
+    z-index: 9999;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Confetti */
+  .confetti {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    top: -20px;
+    z-index: 9998;
+    animation: fall linear forwards;
+  }
+
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(720deg); }
+  }
+
+  .hidden { display: none !important; }
+
+  .final-message {
+    font-size: 1.5em;
+    line-height: 1.8;
+    color: #333;
+  }
+
+  .final-message .big {
+    font-size: 2em;
+    display: block;
+    margin: 15px 0;
+    background: linear-gradient(45deg, #f5576c, #4facfe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+  }
+
+  .rainbow {
+    animation: rainbow 2s linear infinite;
+  }
+
+  @keyframes rainbow {
+    0% { color: #ff0000; }
+    16% { color: #ff9900; }
+    33% { color: #ffff00; }
+    50% { color: #00ff00; }
+    66% { color: #0099ff; }
+    83% { color: #9900ff; }
+    100% { color: #ff0000; }
+  }
+</style>
 </head>
 <body>
-    <div id="app">
-        <!-- Nền hoa đào rơi -->
-        <div class="cherry-blossom-container" id="blossomContainer"></div>
 
-        <!-- Container chính -->
-        <div class="main-container">
-            <!-- Header -->
-            <div class="header">
-                <div class="header-icon">🌸</div>
-                <h1>Ngân Hàng Tình Yêu</h1>
-                <p class="subtitle">— Nơi gửi gắm những rung động đầu đời —</p>
-            </div>
+<div class="container">
+  <!-- Bước 1: Mời nhận quà -->
+  <div id="step1">
+    <h1>🎁 Bạn Có Một Món Quà!</h1>
+    <div class="gift" id="giftIcon">🎁</div>
+    <p>Nhấn vào hộp quà để xem điều bất ngờ nha! 😉</p>
+    <button onclick="openGift()">Mở Quà Ngay</button>
+  </div>
 
-            <!-- Card chính -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="avatar-ring">
-                        <span class="avatar-emoji">💑</span>
-                    </div>
-                    <h2 id="greetingText">Gửi đến <span class="highlight">người con yêu</span></h2>
-                    <p class="card-sub" id="messageText">
-                        Anh đã mở một tài khoản đặc biệt tại ngân hàng này<br />
-                        và chỉ có <strong>EM</strong> mới có quyền rút tiền...
-                    </p>
-                </div>
-
-                <!-- Số dư -->
-                <div class="balance-wrapper">
-                    <div class="balance-card">
-                        <div class="balance-label">💳 Số dư tình cảm</div>
-                        <div class="balance-amount" id="balanceAmount">1.000.000.000</div>
-                        <div class="balance-currency">❤️ yêu thương</div>
-                    </div>
-                    <div class="account-id">
-                        <span>📌 Số TK:</span>
-                        <strong>LOVE • 14.08.2026</strong>
-                    </div>
-                </div>
-
-                <!-- Nút hành động -->
-                <div class="action-grid">
-                    <button class="btn btn-deposit" id="btnDeposit">
-                        <span class="btn-icon">💝</span>
-                        Gửi yêu thương
-                    </button>
-                    <button class="btn btn-withdraw" id="btnWithdraw">
-                        <span class="btn-icon">💖</span>
-                        Nhận thông điệp
-                    </button>
-                    <button class="btn btn-surprise" id="btnSurprise">
-                        <span class="btn-icon">🎁</span>
-                        Quà bất ngờ
-                    </button>
-                </div>
-
-                <!-- Lịch sử giao dịch -->
-                <div class="history-section">
-                    <div class="history-header">
-                        <span>📋 Lịch sử giao dịch</span>
-                        <button class="btn-clear" id="btnClearHistory">Xóa</button>
-                    </div>
-                    <div class="history-list" id="historyList">
-                        <div class="history-empty">Chưa có giao dịch nào</div>
-                    </div>
-                </div>
-
-                <!-- Footer card -->
-                <div class="card-footer">
-                    <span>💕 Made with love</span>
-                </div>
-            </div>
-
-            <!-- Footer trang -->
-            <div class="page-footer">
-                <p>© 2026 • Dành tặng người anh thương nhất</p>
-            </div>
-        </div>
-
-        <!-- Modal thư tình -->
-        <div class="modal" id="loveLetterModal">
-            <div class="modal-content">
-                <button class="modal-close" id="closeLetter">✕</button>
-                <div class="modal-body">
-                    <div class="letter-decoration">💌</div>
-                    <h3>Thư tình</h3>
-                    <div class="letter-text" id="letterText">
-                        Em yêu quý!<br /><br />
-                        Anh viết những dòng này từ sâu thẳm trái tim...<br />
-                        Mỗi ngày trôi qua, anh lại càng thêm yêu em.<br />
-                        Em là ánh sáng, là niềm vui, là tất cả cuộc đời anh.<br /><br />
-                        <span class="letter-sign">— Người luôn yêu em —</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- Bước 2: Câu hỏi yes/no -->
+  <div id="step2" class="hidden">
+    <h1>😏 Câu Hỏi Quan Trọng</h1>
+    <p style="font-size:1.4em; color:#333; font-weight:bold;">
+      Bạn có yêu quý tui không? 🥺
+    </p>
+    <div style="margin-top:30px;">
+      <button id="yesBtn" onclick="sayYes()">CÓ ❤️</button>
+      <button id="noBtn" onmouseover="runAway()" onclick="runAway()">KHÔNG 💔</button>
     </div>
+  </div>
 
-    <script src="js/script.js"></script>
+  <!-- Bước 3: Kết quả -->
+  <div id="step3" class="hidden">
+    <div class="final-message" id="finalMsg"></div>
+    <button onclick="location.reload()" style="margin-top:30px;">🔄 Chơi Lại</button>
+  </div>
+</div>
+
+<script>
+  // ===== Âm thanh bằng Web Audio API =====
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  
+  function playTone(freq, duration = 0.15, type = 'sine') {
+    try {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.value = freq;
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    } catch(e) {}
+  }
+
+  function playSadTrombone() {
+    const notes = [392, 370, 349, 330];
+    notes.forEach((f, i) => {
+      setTimeout(() => playTone(f, 0.4, 'sawtooth'), i * 350);
+    });
+  }
+
+  function playVictory() {
+    const notes = [523, 659, 784, 1047];
+    notes.forEach((f, i) => {
+      setTimeout(() => playTone(f, 0.2), i * 120);
+    });
+  }
+
+  // ===== Bước 1: Mở quà =====
+  function openGift() {
+    document.getElementById('step1').classList.add('hidden');
+    document.getElementById('step2').classList.remove('hidden');
+    burstEmojis(['🎊', '🎉', '✨', '🎈', '💖'], 30);
+    playVictory();
+  }
+
+  // ===== Bước 2: Nút KHÔNG chạy trốn =====
+  let noCount = 0;
+  const noTexts = [
+    'KHÔNG 💔',
+    'Chắc chưa? 🤨',
+    'Nghĩ lại đi 😢',
+    'Buồn đó nha 😭',
+    'Đừng mà 🥺',
+    'Thật hả? 😱',
+    'Tui khóc đó 😭😭',
+    'Huhu... 😿',
+    'Nút này bị lỗi rồi 🤪',
+    'Bấm CÓ đi mà 🙏',
+    'Không cho bấm nữa 😤',
+    'Chạy đâu cho thoát 🏃',
+    'Bắt được rồi nè 😏',
+    'Chịu thua đi 😂',
+    'Vô ích thôi 🤣'
+  ];
+
+  function runAway() {
+    const btn = document.getElementById('noBtn');
+    noCount++;
+    
+    // Đổi text
+    btn.textContent = noTexts[Math.min(noCount, noTexts.length - 1)];
+    
+    // Thu nhỏ dần
+    const scale = Math.max(0.2, 1 - noCount * 0.06);
+    btn.style.transform = `scale(${scale})`;
+    
+    // Nhảy vị trí ngẫu nhiên (chỉ trên desktop)
+    if (window.innerWidth > 768) {
+      const x = (Math.random() - 0.5) * 400;
+      const y = (Math.random() - 0.5) * 300;
+      btn.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+    }
+    
+    playTone(200 + Math.random() * 300, 0.1, 'square');
+    
+    // Nếu bấm quá nhiều -> tự động "CÓ"
+    if (noCount > 12) {
+      btn.disabled = true;
+      btn.textContent = 'Thoát không được đâu 😂';
+      sayYes();
+    }
+  }
+
+  // ===== Bước 3: Nói CÓ =====
+  function sayYes() {
+    document.getElementById('step2').classList.add('hidden');
+    document.getElementById('step3').classList.remove('hidden');
+    
+    const messages = [
+      'Biết ngay mà! 🥰<br>Tui cũng quý bạn lắm!',
+      'Hehe, cảm động quá! 😍<br>Bạn là nhất luôn!',
+      'Yêu bạn nhiều! 💕<br>Cảm ơn vì đã bấm CÓ!',
+      'Quá đỉnh! 🤩<br>Tình bạn chúng ta mãi đỉnh!'
+    ];
+    
+    document.getElementById('finalMsg').innerHTML = 
+      messages[Math.floor(Math.random() * messages.length)] +
+      '<br><br><span class="big rainbow">🎉 CHÚC MỪNG BẠN ĐÃ BỊ LỪA! 🎉</span>' +
+      '<br><span style="color:#e74c3c; font-weight:bold;">Đây chỉ là web trêu thôi! 😜</span>' +
+      '<br><br>Nhưng mà... tui quý bạn thật đó! ❤️';
+    
+    // Bắn pháo hoa emoji
+    burstEmojis(['🎉', '🎊', '💖', '✨', '🌟', '🎈', '🥳', '💝'], 60);
+    createConfetti(80);
+    playVictory();
+    
+    // Âm thanh vui nhộn sau đó
+    setTimeout(() => {
+      [523, 587, 659, 698, 784].forEach((f, i) => 
+        setTimeout(() => playTone(f, 0.15), i * 100)
+      );
+    }, 500);
+  }
+
+  // ===== Hiệu ứng emoji bay =====
+  function burstEmojis(emojis, count) {
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'emoji-float';
+        el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.bottom = '-50px';
+        el.style.fontSize = (1.5 + Math.random() * 2) + 'em';
+        el.style.animationDuration = (3 + Math.random() * 2) + 's';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 6000);
+      }, i * 60);
+    }
+  }
+
+  // ===== Confetti =====
+  function createConfetti(count) {
+    const colors = ['#f5576c', '#4facfe', '#f093fb', '#43e97b', '#fa709a', '#fee140'];
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.background = colors[Math.floor(Math.random() * colors.length)];
+        c.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        c.style.width = (8 + Math.random() * 8) + 'px';
+        c.style.height = c.style.width;
+        c.style.animationDuration = (2 + Math.random() * 2) + 's';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 5000);
+      }, i * 30);
+    }
+  }
+
+  // ===== Click vào hộp quà cũng mở =====
+  document.getElementById('giftIcon').addEventListener('click', openGift);
+</script>
 </body>
 </html>
